@@ -292,12 +292,14 @@ function ServiceCard({
 
 export default function IndustrialServicesUnified() {
   const prefersReducedMotion = useReducedMotion() ?? false;
-  const reordered = [SERVICES[0], ...SERVICES.slice(2), SERVICES[1]].map(
-    (item, index) => ({
-      ...item,
-      number: String(index + 1).padStart(2, "0"),
-    }),
-  );
+  const reordered: (typeof SERVICES)[number][] = [
+    SERVICES[0],
+    ...SERVICES.slice(2),
+    SERVICES[1],
+  ].map((item, index) => ({
+    ...item,
+    number: String(index + 1).padStart(2, "0") as any,
+  }));
 
   const [featured, ...services] = reordered;
   return (
