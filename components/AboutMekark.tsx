@@ -48,10 +48,10 @@ export default function AboutMekark() {
             <div className="grid grid-cols-2 gap-8 mt-12 pt-12 border-t border-zinc-200">
               <div>
                 <p className="text-4xl font-bold text-zinc-900">
-                  3000<span className="text-[#C4161C] text-2xl">Tons</span>
+                  40000<span className="text-[#C4161C] text-2xl">Tons</span>
                 </p>
                 <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold mt-1">
-                  Monthly Capacity
+                  Yearly Capacity
                 </p>
               </div>
               <div>
