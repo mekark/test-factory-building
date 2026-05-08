@@ -89,7 +89,7 @@ const INDUSTRIES = [
     title: "Industrial HVAC Systems",
     description:
       "Reliable airflow systems engineered for consistent performance, energy efficiency, and controlled industrial environments.",
-    image: "/industries we serve/Industries We Serve/industrial.jpeg", // 👈 make sure file exists
+    image: "/industries we serve/Industries We Serve/Industrial.jpeg", // 👈 make sure file exists
     imageAlt: "Industrial HVAC systems with large ducts and air handling units",
   },
 ] as const;
