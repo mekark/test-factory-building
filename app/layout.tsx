@@ -40,7 +40,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','${GTM_ID}');`}
         </Script>
       </head>
-      <body className={`${manrope.variable} relative overflow-x-hidden font-sans antialiased`}>
+      <body
+        className={`${manrope.variable} relative overflow-x-hidden font-sans antialiased`}
+      >
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -52,6 +54,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <SiteAmbientCubes />
         <FloatingWhatsApp />
         <div className="relative">{children}</div>
+        <Script id="tawk-to" strategy="afterInteractive">
+          {/* {`
+      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+      (function(){
+      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+      s1.async=true;
+      s1.src='https://embed.tawk.to/69fd7e65427c251c368c1e92/1jo33bfff';
+      s1.charset='UTF-8';
+      s1.setAttribute('crossorigin','*');
+      s0.parentNode.insertBefore(s1,s0);
+      })();
+    `} */}
+        </Script>
       </body>
     </html>
   );
