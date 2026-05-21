@@ -96,6 +96,67 @@ const LABEL_CLASSNAME =
 
 const FIELD_CLASSNAME =
   "h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 placeholder:text-white/40 focus:border-[#C4161C] focus:bg-white/15";
+type FormFieldProps = {
+  id: keyof FormValues;
+  label: string;
+  placeholder?: string;
+  type?: string;
+  value: string;
+  onChange: (
+    event: ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => void;
+  error?: string;
+  required?: boolean;
+};
+
+function FormField({
+  id,
+  label,
+  placeholder,
+  type = "text",
+  value,
+  onChange,
+  error,
+  required = false,
+}: FormFieldProps) {
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className={LABEL_CLASSNAME}
+      >
+        {label}
+
+        {required && (
+          <span className="ml-1 text-[#FF6B6B]">*</span>
+        )}
+      </label>
+
+      <input
+        id={id}
+        name={id}
+        type={type}
+        placeholder={placeholder}
+        value={value || ""}
+        onChange={onChange}
+        autoComplete="off"
+        aria-invalid={Boolean(error)}
+        className={`${FIELD_CLASSNAME} ${error
+          ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
+          : ""
+          }`}
+      />
+
+      {error ? (
+        <p className="mt-1 text-xs text-[#FF6B6B]">
+          {error}
+        </p>
+      ) : null}
+    </div>
+  );
+}
 
 export default function Home() {
 
@@ -202,67 +263,7 @@ export default function Home() {
     }
   };
 
-  type FormFieldProps = {
-    id: keyof FormValues;
-    label: string;
-    placeholder?: string;
-    type?: string;
-    value: string;
-    onChange: (
-      event: ChangeEvent<
-        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-      >
-    ) => void;
-    error?: string;
-    required?: boolean;
-  };
 
-  function FormField({
-    id,
-    label,
-    placeholder,
-    type = "text",
-    value,
-    onChange,
-    error,
-    required = false,
-  }: FormFieldProps) {
-    return (
-      <div>
-        <label
-          htmlFor={id}
-          className={LABEL_CLASSNAME}
-        >
-          {label}
-
-          {required && (
-            <span className="ml-1 text-[#FF6B6B]">*</span>
-          )}
-        </label>
-
-        <input
-          id={id}
-          name={id}
-          type={type}
-          placeholder={placeholder}
-          value={value || ""}
-          onChange={onChange}
-          autoComplete="off"
-          aria-invalid={Boolean(error)}
-          className={`${FIELD_CLASSNAME} ${error
-            ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
-            : ""
-            }`}
-        />
-
-        {error ? (
-          <p className="mt-1 text-xs text-[#FF6B6B]">
-            {error}
-          </p>
-        ) : null}
-      </div>
-    );
-  }
   const WHATSAPP_MESSAGE =
     "Hello Mekark, I would like to discuss my industrial construction project.";
 
@@ -327,47 +328,49 @@ export default function Home() {
             </p>
             {/* REVIEW BADGE */}
 
-            <div className="mt-8 flex items-center gap-4">
+            <div className="mt-8 flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:text-left">
+
               {/* CLIENT LOGOS */}
 
               <div className="flex -space-x-3">
                 <img
                   src="/Clients/komatsu.png"
                   alt="Komatsu"
-                  className="h-12 w-12 rounded-full border-2 border-white bg-white object-cover p-1"
+                  className="h-10 w-10 rounded-full border-2 border-white bg-white object-cover p-1 sm:h-12 sm:w-12"
                 />
 
                 <img
                   src="/Clients/orbittal.png"
                   alt="Orbittal"
-                  className="h-12 w-12 rounded-full border-2 border-white bg-white object-cover p-1"
+                  className="h-10 w-10 rounded-full border-2 border-white bg-white object-cover p-1 sm:h-12 sm:w-12"
                 />
 
                 <img
                   src="/Clients/srf.png"
                   alt="SRF"
-                  className="h-12 w-12 rounded-full border-2 border-white bg-white object-cover p-1"
+                  className="h-10 w-10 rounded-full border-2 border-white bg-white object-cover p-1 sm:h-12 sm:w-12"
                 />
               </div>
 
               {/* REVIEW CONTENT */}
 
-              <div className="flex flex-col">
+              <div className="flex flex-col items-center sm:items-start">
+
                 {/* STARS */}
 
                 <div className="flex items-center gap-1 leading-none">
-                  <span className="text-[18px] text-[#FFD54A]">★</span>
-                  <span className="text-[18px] text-[#FFD54A]">★</span>
-                  <span className="text-[18px] text-[#FFD54A]">★</span>
-                  <span className="text-[18px] text-[#FFD54A]">★</span>
-                  <span className="text-[18px] text-[#FFD54A]">★</span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
                 </div>
 
-                <p className="mt-1 text-sm font-medium leading-tight text-white">
+                <p className="mt-1 text-sm font-medium leading-tight text-white sm:text-[15px]">
                   Trusted by 500+ Industrial Clients
                 </p>
 
-                <p className="mt-1 text-xs font-bold leading-tight text-white/65">
+                <p className="mt-1 text-[11px] font-bold leading-tight text-white/65 sm:text-xs">
                   Rated 4.7/5 for execution quality
                 </p>
               </div>
@@ -456,7 +459,7 @@ export default function Home() {
                     label="Email"
                     type="email"
                     placeholder="name@company.com"
-                    value={formValues.email}
+                    value={formValues.email || ""}
                     onChange={handleInputChange}
                     error={formErrors.email}
                   />

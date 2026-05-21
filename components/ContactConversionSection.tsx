@@ -73,9 +73,10 @@ function FormField({
   value,
   onChange,
   error,
-}: {
+}: 
+{
   id: keyof FormValues;
-  label: string;
+  label: React.ReactNode;
   type?: "text" | "email" | "tel";
   placeholder: string;
   value: string;
@@ -95,42 +96,54 @@ function FormField({
         value={value}
         onChange={onChange}
         aria-invalid={Boolean(error)}
-        className={`${FIELD_CLASSNAME} ${
-          error
-            ? "border-[#C4161C] bg-[#FFF5F5] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.12)]"
-            : ""
-        }`}
+        className={`${FIELD_CLASSNAME} ${error
+          ? "border-[#C4161C] bg-[#FFF5F5] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.12)]"
+          : ""
+          }`}
       />
       {error ? <p className="mt-2 text-sm text-[#C4161C]">{error}</p> : null}
     </div>
   );
 }
 
-function validateForm(values: FormValues) {
+const validateForm = (values: FormValues): FormErrors => {
   const errors: FormErrors = {};
-  const phoneDigits = values.phoneNumber.replace(/\D/g, "");
 
-  if (!values.name.trim()) errors.name = "Enter your name.";
-  if (!values.companyName.trim()) errors.companyName = "Enter your company name.";
+  // REQUIRED FIELDS
+
+  if (!values.name.trim()) {
+    errors.name = "Name is required";
+  }
+
   if (!values.phoneNumber.trim()) {
-    errors.phoneNumber = "Enter a phone number.";
-  } else if (phoneDigits.length < 10 || phoneDigits.length > 15) {
-    errors.phoneNumber = "Enter a valid phone number.";
+    errors.phoneNumber = "Phone number is required";
+  } else {
+    const phoneDigits = values.phoneNumber.replace(/\D/g, "");
+
+    if (phoneDigits.length < 10 || phoneDigits.length > 15) {
+      errors.phoneNumber = "Enter a valid phone number";
+    }
   }
-  if (!values.email.trim()) {
-    errors.email = "Enter an email address.";
-  } else if (!EMAIL_REGEX.test(values.email.trim())) {
-    errors.email = "Enter a valid email address.";
+
+  if (!values.projectType.trim()) {
+    errors.projectType = "Select project type";
   }
-  if (!values.projectLocation.trim()) errors.projectLocation = "Enter the project city or site location.";
-  if (!values.projectType.trim()) errors.projectType = "Select a project type.";
-  if (values.sqft.trim() && !/^\d+([.,]\d+)?$/.test(values.sqft.trim())) {
-    errors.sqft = "Use numbers only for square footage.";
+
+  if (!values.sqft.trim()) {
+    errors.sqft = "Select project size";
   }
-  if (!values.requirements.trim()) errors.requirements = "Enter your project requirements.";
+
+  // OPTIONAL EMAIL VALIDATION
+
+  if (
+    values.email.trim() &&
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())
+  ) {
+    errors.email = "Enter a valid email";
+  }
 
   return errors;
-}
+};
 
 export default function ContactConversionSection() {
   const prefersReducedMotion = useReducedMotion() ?? false;
@@ -329,14 +342,14 @@ export default function ContactConversionSection() {
                 <div className="flex items-start gap-3">
                   <Mail className="mt-0.5 h-4 w-4 flex-none text-[#C4161C]" />
                   <div>
-                      <div className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#A1A1AA]">
-                        Email
-                      </div>
-                      <div className="mt-2 text-sm leading-6 text-[#E4E4E7]">
-                        admin@mekark.com
-                      </div>
+                    <div className="text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-[#A1A1AA]">
+                      Email
+                    </div>
+                    <div className="mt-2 text-sm leading-6 text-[#E4E4E7]">
+                      admin@mekark.com
                     </div>
                   </div>
+                </div>
               </div>
 
             </div>
@@ -390,7 +403,12 @@ export default function ContactConversionSection() {
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7">
                       <FormField
                         id="name"
-                        label="Name"
+                        label={
+                          <>
+                            Name
+                            <span className="ml-1 text-[#FF6B6B]">*</span>
+                          </>
+                        }
                         placeholder="Your name"
                         value={formValues.name}
                         onChange={handleInputChange}
@@ -409,7 +427,12 @@ export default function ContactConversionSection() {
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7">
                       <FormField
                         id="phoneNumber"
-                        label="Phone Number"
+                        label={
+                          <>
+                            Phone Number
+                            <span className="ml-1 text-[#FF6B6B]">*</span>
+                          </>
+                        }
                         type="tel"
                         placeholder="Phone number"
                         value={formValues.phoneNumber}
@@ -439,15 +462,16 @@ export default function ContactConversionSection() {
                       <div>
                         <label htmlFor="projectType" className={LABEL_CLASSNAME}>
                           Project Type
+                          <span className="ml-1 text-[#FF6B6B]">*</span>
+
                         </label>
                         <select
                           id="projectType"
                           name="projectType"
-                          className={`${FIELD_CLASSNAME} ${
-                            formErrors.projectType
-                              ? "border-[#C4161C] bg-[#FFF5F5] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.12)]"
-                              : ""
-                          }`}
+                          className={`${FIELD_CLASSNAME} ${formErrors.projectType
+                            ? "border-[#C4161C] bg-[#FFF5F5] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.12)]"
+                            : ""
+                            }`}
                           value={formValues.projectType}
                           onChange={handleInputChange}
                           aria-invalid={Boolean(formErrors.projectType)}
@@ -467,15 +491,63 @@ export default function ContactConversionSection() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7">
-                      <FormField
+                    <div>
+                      <label
+                        htmlFor="sqft"
+                        className="mb-2 block text-sm font-medium text-black/80"
+                      >
+                        Project sq.ft
+                        <span className="ml-1 text-[#FF6B6B]">*</span>
+                      </label>
+
+                      <select
                         id="sqft"
-                        label="Project Size (Sq. Ft.)"
-                        placeholder="Approximate built-up area"
+                        name="sqft"
                         value={formValues.sqft}
                         onChange={handleInputChange}
-                        error={formErrors.sqft}
-                      />
+                        className={`h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-black outline-none backdrop-blur-md transition-all duration-300 focus:border-[#C4161C] focus:bg-white/15 ${formErrors.sqft
+                          ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
+                          : ""
+                          }`}
+                      >
+                        <option value="" className="text-black">
+                          Select Project Size
+                        </option>
+
+                        <option
+                          value="10,000 - 20,000 Sq.ft"
+                          className="text-black"
+                        >
+                          10,000 - 20,000 Sq.ft
+                        </option>
+
+                        <option
+                          value="20,000 - 30,000 Sq.ft"
+                          className="text-black"
+                        >
+                          20,000 - 30,000 Sq.ft
+                        </option>
+
+                        <option
+                          value="30,000 - 50,000 Sq.ft"
+                          className="text-black"
+                        >
+                          30,000 - 50,000 Sq.ft
+                        </option>
+
+                        <option
+                          value="50,000+ Sq.ft"
+                          className="text-black"
+                        >
+                          50,000+ Sq.ft
+                        </option>
+                      </select>
+
+                      {formErrors.sqft ? (
+                        <p className="mt-1 text-xs text-[#FF6B6B]">
+                          {formErrors.sqft}
+                        </p>
+                      ) : null}
                     </div>
 
                     <div>
@@ -490,11 +562,10 @@ export default function ContactConversionSection() {
                         value={formValues.requirements}
                         onChange={handleInputChange}
                         aria-invalid={Boolean(formErrors.requirements)}
-                        className={`w-full rounded-xl border border-[#E4E4E7] bg-[#FAFAFA]/78 p-4.5 text-[0.98rem] text-[#18181B] shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] outline-none transition-[border-color,box-shadow,background-color] duration-300 placeholder:text-[#52525B]/88 hover:border-[#C4161C]/35 focus:border-[#C4161C] focus:bg-[#FFFFFF] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.16)] ${
-                          formErrors.requirements
-                            ? "border-[#C4161C] bg-[#FFF5F5] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.12)]"
-                            : ""
-                        }`}
+                        className={`w-full rounded-xl border border-[#E4E4E7] bg-[#FAFAFA]/78 p-4.5 text-[0.98rem] text-[#18181B] shadow-[inset_0_1px_0_rgba(255,255,255,0.72)] outline-none transition-[border-color,box-shadow,background-color] duration-300 placeholder:text-[#52525B]/88 hover:border-[#C4161C]/35 focus:border-[#C4161C] focus:bg-[#FFFFFF] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.16)] ${formErrors.requirements
+                          ? "border-[#C4161C] bg-[#FFF5F5] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.12)]"
+                          : ""
+                          }`}
                       />
                       {formErrors.requirements ? (
                         <p className="mt-2 text-sm text-[#C4161C]">{formErrors.requirements}</p>
@@ -503,11 +574,10 @@ export default function ContactConversionSection() {
 
                     {statusMessage ? (
                       <div
-                        className={`rounded-xl border px-4 py-3 text-sm leading-6 ${
-                          statusMessage.tone === "success"
-                            ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                            : "border-[#FECACA] bg-[#FEF2F2] text-[#B91C1C]"
-                        }`}
+                        className={`rounded-xl border px-4 py-3 text-sm leading-6 ${statusMessage.tone === "success"
+                          ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                          : "border-[#FECACA] bg-[#FEF2F2] text-[#B91C1C]"
+                          }`}
                       >
                         {statusMessage.text}
                       </div>
