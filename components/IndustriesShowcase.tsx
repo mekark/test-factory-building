@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 
 const INDUSTRIES = [
   {
@@ -98,6 +99,8 @@ const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
 
 export default function IndustriesShowcase() {
   const prefersReducedMotion = useReducedMotion() ?? false;
+  const [showAllIndustries, setShowAllIndustries] = useState(false);
+
 
   return (
     <section
@@ -208,7 +211,10 @@ export default function IndustriesShowcase() {
         </motion.div>
 
         <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-10 md:mt-16 md:grid-cols-2 md:gap-y-12 xl:grid-cols-3">
-          {INDUSTRIES.map((industry, index) => (
+          {(showAllIndustries
+            ? INDUSTRIES
+            : INDUSTRIES.slice(0, 6)
+          ).map((industry, index) => (
             <motion.a
               key={industry.title}
               href="#contact"
@@ -262,6 +268,22 @@ export default function IndustriesShowcase() {
             </motion.a>
           ))}
         </div>
+        {/* VIEW MORE BUTTON */}
+
+        {INDUSTRIES.length > 6 && (
+          <div className="mt-14 flex justify-center">
+            <button
+              onClick={() =>
+                setShowAllIndustries(!showAllIndustries)
+              }
+              className="inline-flex items-center justify-center rounded-full border border-[#E4E4E7]/15 bg-[#18181B] px-8 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-white transition-all duration-300 hover:border-[#C4161C] hover:bg-[#C4161C]"
+            >
+              {showAllIndustries
+                ? "View Less"
+                : "View More Industries"}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
