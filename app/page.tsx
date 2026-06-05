@@ -15,6 +15,7 @@ import AboutMekark from "../components/AboutMekark";
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Phone, MessageCircle } from "lucide-react";
 import { ArrowUpRight } from "lucide-react";
+import { body } from "framer-motion/client";
 
 type FormValues = {
   name: string;
@@ -50,7 +51,8 @@ const PROJECT_TYPES = [
 ];
 
 const FORM_ENDPOINT = "/api/enquiry-form";
-const THANK_YOU_URL = "https://factorybuildingmanufacturer.mekark.com/thank-you";
+const THANK_YOU_URL =
+  "https://factorybuildingmanufacturer.mekark.com/thank-you";
 
 const validateForm = (values: FormValues): FormErrors => {
   const errors: FormErrors = {};
@@ -91,8 +93,7 @@ const validateForm = (values: FormValues): FormErrors => {
   return errors;
 };
 
-const LABEL_CLASSNAME =
-  "mb-2 block text-sm font-medium text-white/80";
+const LABEL_CLASSNAME = "mb-2 block text-sm font-medium text-white/80";
 
 const FIELD_CLASSNAME =
   "h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 placeholder:text-white/40 focus:border-[#C4161C] focus:bg-white/15";
@@ -105,10 +106,11 @@ type FormFieldProps = {
   onChange: (
     event: ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => void;
   error?: string;
   required?: boolean;
+  maxLength?: number;
 };
 
 function FormField({
@@ -120,18 +122,14 @@ function FormField({
   onChange,
   error,
   required = false,
+  maxLength,
 }: FormFieldProps) {
   return (
     <div>
-      <label
-        htmlFor={id}
-        className={LABEL_CLASSNAME}
-      >
+      <label htmlFor={id} className={LABEL_CLASSNAME}>
         {label}
 
-        {required && (
-          <span className="ml-1 text-[#FF6B6B]">*</span>
-        )}
+        {required && <span className="ml-1 text-[#FF6B6B]">*</span>}
       </label>
 
       <input
@@ -139,30 +137,23 @@ function FormField({
         name={id}
         type={type}
         placeholder={placeholder}
+        maxLength={maxLength}
         value={value || ""}
         onChange={onChange}
         autoComplete="off"
         aria-invalid={Boolean(error)}
-        className={`${FIELD_CLASSNAME} ${error
-          ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
-          : ""
-          }`}
+        className={`${FIELD_CLASSNAME} ${
+          error ? "border-[#FF6B6B] focus:border-[#FF6B6B]" : ""
+        }`}
       />
 
-      {error ? (
-        <p className="mt-1 text-xs text-[#FF6B6B]">
-          {error}
-        </p>
-      ) : null}
+      {error ? <p className="mt-1 text-xs text-[#FF6B6B]">{error}</p> : null}
     </div>
   );
 }
 
 export default function Home() {
-
-  const [formValues, setFormValues] = useState<FormValues>(
-    INITIAL_FORM_VALUES
-  );
+  const [formValues, setFormValues] = useState<FormValues>(INITIAL_FORM_VALUES);
 
   const [formErrors, setFormErrors] = useState<FormErrors>({});
 
@@ -176,7 +167,7 @@ export default function Home() {
   const handleInputChange = (
     event: ChangeEvent<
       HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    >,
   ) => {
     const { name, value } = event.target;
 
@@ -196,10 +187,9 @@ export default function Home() {
     });
   };
 
-  const handleSubmit = async (
-    event: FormEvent<HTMLFormElement>
-  ) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log("FORM VALUES:", formValues);
 
     const validationErrors = validateForm(formValues);
 
@@ -219,6 +209,18 @@ export default function Home() {
     setIsSubmitting(true);
 
     try {
+      const requestPayload = {
+        name: formValues.name.trim(),
+        email: formValues.email.trim(),
+        phone: formValues.phoneNumber.trim(),
+        location: formValues.projectLocation.trim(),
+        company: formValues.companyName.trim(),
+        sqf: formValues.sqft.trim(),
+        message: formValues.requirements.trim(),
+        projectType: formValues.projectType.trim(),
+      };
+
+      console.log("REQUEST PAYLOAD:", requestPayload);
       const response = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: {
@@ -230,11 +232,11 @@ export default function Home() {
           name: formValues.name.trim(),
           email: formValues.email.trim(),
           phone: formValues.phoneNumber.trim(),
-          city: formValues.projectLocation.trim(),
+          location: formValues.projectLocation.trim(),
           company: formValues.companyName.trim(),
           projectType: formValues.projectType.trim(),
-          sqft: formValues.sqft.trim(),
-          projectDetails: formValues.requirements.trim(),
+          sqf: formValues.sqft.trim(),
+          message: formValues.requirements.trim(),
         }),
       });
 
@@ -243,7 +245,7 @@ export default function Home() {
       if (!response.ok) {
         throw new Error(
           payload?.message ||
-          "We could not submit your enquiry right now. Please try again."
+            "We could not submit your enquiry right now. Please try again.",
         );
       }
 
@@ -263,17 +265,14 @@ export default function Home() {
     }
   };
 
-
   const WHATSAPP_MESSAGE =
     "Hello Mekark, I would like to discuss my industrial construction project.";
 
   const PHONE_NUMBER = "9790924754";
 
   const whatsappHref = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(
-    WHATSAPP_MESSAGE
+    WHATSAPP_MESSAGE,
   )}`;
-
-
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-[#18181B]">
@@ -329,7 +328,6 @@ export default function Home() {
             {/* REVIEW BADGE */}
 
             <div className="mt-8 flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:text-left">
-
               {/* CLIENT LOGOS */}
 
               <div className="flex -space-x-3">
@@ -355,15 +353,24 @@ export default function Home() {
               {/* REVIEW CONTENT */}
 
               <div className="flex flex-col items-center sm:items-start">
-
                 {/* STARS */}
 
                 <div className="flex items-center gap-1 leading-none">
-                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
-                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
-                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
-                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
-                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">★</span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">
+                    ★
+                  </span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">
+                    ★
+                  </span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">
+                    ★
+                  </span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">
+                    ★
+                  </span>
+                  <span className="text-[16px] text-[#FFD54A] sm:text-[18px]">
+                    ★
+                  </span>
                 </div>
 
                 <p className="mt-1 text-sm font-medium leading-tight text-white sm:text-[15px]">
@@ -413,12 +420,19 @@ export default function Home() {
                   Start Your Industrial Project
                 </h3>
 
-                <p className="mt-2 text-[13px] leading-6 text-white/70">                Share your requirement and our EPC specialists will contact you
-                  with planning, budgeting, and execution support.
+                <p className="mt-2 text-[13px] leading-6 text-white/70">
+                  {" "}
+                  Share your requirement and our EPC specialists will contact
+                  you with planning, budgeting, and execution support.
                 </p>
               </div>
 
-              <form className="space-y-3" onSubmit={handleSubmit} noValidate autoComplete="off">
+              <form
+                className="space-y-3"
+                onSubmit={handleSubmit}
+                noValidate
+                autoComplete="off"
+              >
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <FormField
                     id="name"
@@ -428,7 +442,6 @@ export default function Home() {
                     onChange={handleInputChange}
                     error={formErrors.name}
                     required
-
                   />
 
                   <FormField
@@ -446,12 +459,12 @@ export default function Home() {
                     id="phoneNumber"
                     label="Phone"
                     type="tel"
+                    maxLength={10}
                     placeholder="Phone number"
                     value={formValues.phoneNumber}
                     onChange={handleInputChange}
                     error={formErrors.phoneNumber}
                     required
-
                   />
 
                   <FormField
@@ -473,7 +486,6 @@ export default function Home() {
                     >
                       Project Type
                       <span className="ml-1 text-[#FF6B6B]">*</span>
-
                     </label>
 
                     <select
@@ -513,10 +525,11 @@ export default function Home() {
                       name="sqft"
                       value={formValues.sqft}
                       onChange={handleInputChange}
-                      className={`h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 focus:border-[#C4161C] focus:bg-white/15 ${formErrors.sqft
-                        ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
-                        : ""
-                        }`}
+                      className={`h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 focus:border-[#C4161C] focus:bg-white/15 ${
+                        formErrors.sqft
+                          ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
+                          : ""
+                      }`}
                     >
                       <option value="" className="text-black">
                         Select Project Size
@@ -543,10 +556,7 @@ export default function Home() {
                         30,000 - 50,000 Sq.ft
                       </option>
 
-                      <option
-                        value="50,000+ Sq.ft"
-                        className="text-black"
-                      >
+                      <option value="50,000+ Sq.ft" className="text-black">
                         50,000+ Sq.ft
                       </option>
                     </select>
@@ -586,10 +596,11 @@ export default function Home() {
 
                 {statusMessage ? (
                   <div
-                    className={`rounded-xl border px-4 py-3 text-sm ${statusMessage.tone === "success"
-                      ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-200"
-                      : "border-red-400/30 bg-red-500/10 text-red-200"
-                      }`}
+                    className={`rounded-xl border px-4 py-3 text-sm ${
+                      statusMessage.tone === "success"
+                        ? "border-emerald-400/30 bg-emerald-500/10 text-emerald-200"
+                        : "border-red-400/30 bg-red-500/10 text-red-200"
+                    }`}
                   >
                     {statusMessage.text}
                   </div>
@@ -625,7 +636,8 @@ export default function Home() {
                 </a>
               </div>
             </div>
-          </div>        </div>
+          </div>{" "}
+        </div>
       </section>
 
       <ClientLogos />

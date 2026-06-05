@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       !body.name ||
       !body.phone ||
       !body.projectType ||
-      !body.sqft
+      !body.sqf
     ) {
       return NextResponse.json(
         {

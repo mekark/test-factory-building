@@ -73,6 +73,8 @@ function FormField({
   value,
   onChange,
   error,
+  maxLength,
+
 }: 
 {
   id: keyof FormValues;
@@ -82,6 +84,8 @@ function FormField({
   value: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   error?: string;
+  maxLength?: number;
+
 }) {
   return (
     <div>
@@ -93,6 +97,7 @@ function FormField({
         name={id}
         type={type}
         placeholder={placeholder}
+        maxLength={maxLength}
         value={value}
         onChange={onChange}
         aria-invalid={Boolean(error)}
@@ -203,11 +208,11 @@ export default function ContactConversionSection() {
           name: formValues.name.trim(),
           email: formValues.email.trim(),
           phone: formValues.phoneNumber.trim(),
-          city: formValues.projectLocation.trim(),
+          location: formValues.projectLocation.trim(),
           company: formValues.companyName.trim(),
           projectType: formValues.projectType.trim(),
-          sqft: formValues.sqft.trim(),
-          projectDetails: formValues.requirements.trim(),
+          sqf: formValues.sqft.trim(),
+          message: formValues.requirements.trim(),
         }),
       });
 
@@ -435,6 +440,7 @@ export default function ContactConversionSection() {
                         }
                         type="tel"
                         placeholder="Phone number"
+                        maxLength={10}
                         value={formValues.phoneNumber}
                         onChange={handleInputChange}
                         error={formErrors.phoneNumber}
