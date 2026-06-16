@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <SiteAmbientCubes />
         <FloatingWhatsApp />
         <div className="relative">{children}</div>
-        {/* <Script id="tawk-to" strategy="afterInteractive">
+        <Script id="tawk-to" strategy="afterInteractive">
           {`
       var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
       (function(){
@@ -64,9 +64,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       s1.charset='UTF-8';
       s1.setAttribute('crossorigin','*');
       s0.parentNode.insertBefore(s1,s0);
-      })();
+      })(); 
     `}
-        </Script> */}
+        </Script>
       </body>
     </html>
   );
