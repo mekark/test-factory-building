@@ -17,11 +17,6 @@ export const metadata: Metadata = {
   title: "Mekark Structures Pvt. Ltd.",
   description:
     "Mekark delivers industrial construction solutions for factories, plant infrastructure, utility systems, and manufacturing facilities.",
-  icons: {
-    icon: "/LogoMekark.png",
-    shortcut: "/LogoMekark.png",
-    apple: "/LogoMekark.png",
-  },
 };
 
 export default function RootLayout({
