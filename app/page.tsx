@@ -25,6 +25,8 @@ type FormValues = {
   projectLocation: string;
   projectType: string;
   sqft: string;
+  startTimeline: string;
+  budget: string;
   requirements: string;
 };
 
@@ -38,8 +40,24 @@ const INITIAL_FORM_VALUES: FormValues = {
   projectLocation: "",
   projectType: "",
   sqft: "",
+  startTimeline: "",
+  budget: "",
   requirements: "",
 };
+
+const START_TIMELINES = [
+  "Immediately",
+  "Within 1 Month",
+  "Within 3 Months",
+  "Planning for Future",
+];
+
+const BUDGETS = [
+  "Below ₹50 Lakhs",
+  "₹50 Lakhs – ₹1 Crore",
+  "₹1 Crore – ₹5 Crores",
+  "Above ₹5 Crores",
+];
 
 const PROJECT_TYPES = [
   "Factory Construction",
@@ -79,6 +97,14 @@ const validateForm = (values: FormValues): FormErrors => {
 
   if (!values.sqft.trim()) {
     errors.sqft = "Select project size";
+  }
+
+  if (!values.startTimeline.trim()) {
+    errors.startTimeline = "Please select a project start timeline";
+  }
+
+  if (!values.budget.trim()) {
+    errors.budget = "Please select a project budget";
   }
 
   // OPTIONAL EMAIL VALIDATION
@@ -216,8 +242,10 @@ export default function Home() {
         location: formValues.projectLocation.trim(),
         company: formValues.companyName.trim(),
         sqf: formValues.sqft.trim(),
+        startTimeline: formValues.startTimeline.trim(),
+        budget: formValues.budget.trim(),
         message: formValues.requirements.trim(),
-        projectType: formValues.projectType.trim(),
+        service: formValues.projectType.trim(),
       };
 
       console.log("REQUEST PAYLOAD:", requestPayload);
@@ -228,16 +256,7 @@ export default function Home() {
         },
 
         // FIXED API PAYLOAD
-        body: JSON.stringify({
-          name: formValues.name.trim(),
-          email: formValues.email.trim(),
-          phone: formValues.phoneNumber.trim(),
-          location: formValues.projectLocation.trim(),
-          company: formValues.companyName.trim(),
-          projectType: formValues.projectType.trim(),
-          sqf: formValues.sqft.trim(),
-          message: formValues.requirements.trim(),
-        }),
+        body: JSON.stringify(requestPayload),
       });
 
       const payload = await response.json().catch(() => null);
@@ -564,6 +583,82 @@ export default function Home() {
                     {formErrors.sqft ? (
                       <p className="mt-1 text-xs text-[#FF6B6B]">
                         {formErrors.sqft}
+                      </p>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <div>
+                    <label
+                      htmlFor="startTimeline"
+                      className="mb-2 block text-sm font-medium text-white/80"
+                    >
+                      Project Start Timeline
+                      <span className="ml-1 text-[#FF6B6B]">*</span>
+                    </label>
+
+                    <select
+                      id="startTimeline"
+                      name="startTimeline"
+                      value={formValues.startTimeline}
+                      onChange={handleInputChange}
+                      className={`h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 focus:border-[#C4161C] focus:bg-white/15 ${
+                        formErrors.startTimeline
+                          ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
+                          : ""
+                      }`}
+                    >
+                      <option value="" className="text-black">
+                        Select timeline
+                      </option>
+                      {START_TIMELINES.map((option) => (
+                        <option key={option} value={option} className="text-black">
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+
+                    {formErrors.startTimeline ? (
+                      <p className="mt-1 text-xs text-[#FF6B6B]">
+                        {formErrors.startTimeline}
+                      </p>
+                    ) : null}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="budget"
+                      className="mb-2 block text-sm font-medium text-white/80"
+                    >
+                      Project Budget
+                      <span className="ml-1 text-[#FF6B6B]">*</span>
+                    </label>
+
+                    <select
+                      id="budget"
+                      name="budget"
+                      value={formValues.budget}
+                      onChange={handleInputChange}
+                      className={`h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 focus:border-[#C4161C] focus:bg-white/15 ${
+                        formErrors.budget
+                          ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
+                          : ""
+                      }`}
+                    >
+                      <option value="" className="text-black">
+                        Select budget range
+                      </option>
+                      {BUDGETS.map((option) => (
+                        <option key={option} value={option} className="text-black">
+                          {option}
+                        </option>
+                      ))}
+                    </select>
+
+                    {formErrors.budget ? (
+                      <p className="mt-1 text-xs text-[#FF6B6B]">
+                        {formErrors.budget}
                       </p>
                     ) : null}
                   </div>

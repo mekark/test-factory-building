@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     if (
       !body.name ||
       !body.phone ||
-      !body.projectType ||
+      !body.service ||
       !body.sqf
     ) {
       return NextResponse.json(

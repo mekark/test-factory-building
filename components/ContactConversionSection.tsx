@@ -30,7 +30,19 @@ const PROJECT_TYPES = [
   "Other",
 ] as const;
 
+const START_TIMELINES = [
+  "Immediately",
+  "Within 1 Month",
+  "Within 3 Months",
+  "Planning for Future",
+] as const;
 
+const BUDGETS = [
+  "Below ₹50 Lakhs",
+  "₹50 Lakhs – ₹1 Crore",
+  "₹1 Crore – ₹5 Crores",
+  "Above ₹5 Crores",
+] as const;
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
 const FORM_ENDPOINT = "/api/enquiry-form";
@@ -49,6 +61,8 @@ type FormValues = {
   projectLocation: string;
   projectType: string;
   sqft: string;
+  startTimeline: string;
+  budget: string;
   requirements: string;
 };
 
@@ -62,6 +76,8 @@ const INITIAL_FORM_VALUES: FormValues = {
   projectLocation: "",
   projectType: "",
   sqft: "",
+  startTimeline: "",
+  budget: "",
   requirements: "",
 };
 
@@ -138,6 +154,14 @@ const validateForm = (values: FormValues): FormErrors => {
     errors.sqft = "Select project size";
   }
 
+  if (!values.startTimeline.trim()) {
+    errors.startTimeline = "Please select a project start timeline";
+  }
+
+  if (!values.budget.trim()) {
+    errors.budget = "Please select a project budget";
+  }
+
   // OPTIONAL EMAIL VALIDATION
 
   if (
@@ -210,8 +234,10 @@ export default function ContactConversionSection() {
           phone: formValues.phoneNumber.trim(),
           location: formValues.projectLocation.trim(),
           company: formValues.companyName.trim(),
-          projectType: formValues.projectType.trim(),
+          service: formValues.projectType.trim(),
           sqf: formValues.sqft.trim(),
+          startTimeline: formValues.startTimeline.trim(),
+          budget: formValues.budget.trim(),
           message: formValues.requirements.trim(),
         }),
       });
@@ -554,6 +580,72 @@ export default function ContactConversionSection() {
                           {formErrors.sqft}
                         </p>
                       ) : null}
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7">
+                      <div>
+                        <label htmlFor="startTimeline" className={LABEL_CLASSNAME}>
+                          Project Start Timeline
+                          <span className="ml-1 text-[#FF6B6B]">*</span>
+                        </label>
+                        <select
+                          id="startTimeline"
+                          name="startTimeline"
+                          className={`${FIELD_CLASSNAME} ${formErrors.startTimeline
+                            ? "border-[#C4161C] bg-[#FFF5F5] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.12)]"
+                            : ""
+                            }`}
+                          value={formValues.startTimeline}
+                          onChange={handleInputChange}
+                          aria-invalid={Boolean(formErrors.startTimeline)}
+                        >
+                          <option value="" disabled>
+                            Select timeline
+                          </option>
+                          {START_TIMELINES.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                        {formErrors.startTimeline ? (
+                          <p className="mt-2 text-sm text-[#C4161C]">
+                            {formErrors.startTimeline}
+                          </p>
+                        ) : null}
+                      </div>
+
+                      <div>
+                        <label htmlFor="budget" className={LABEL_CLASSNAME}>
+                          Project Budget
+                          <span className="ml-1 text-[#FF6B6B]">*</span>
+                        </label>
+                        <select
+                          id="budget"
+                          name="budget"
+                          className={`${FIELD_CLASSNAME} ${formErrors.budget
+                            ? "border-[#C4161C] bg-[#FFF5F5] focus:shadow-[0_0_0_4px_rgba(196,22,28,0.12)]"
+                            : ""
+                            }`}
+                          value={formValues.budget}
+                          onChange={handleInputChange}
+                          aria-invalid={Boolean(formErrors.budget)}
+                        >
+                          <option value="" disabled>
+                            Select budget range
+                          </option>
+                          {BUDGETS.map((option) => (
+                            <option key={option} value={option}>
+                              {option}
+                            </option>
+                          ))}
+                        </select>
+                        {formErrors.budget ? (
+                          <p className="mt-2 text-sm text-[#C4161C]">
+                            {formErrors.budget}
+                          </p>
+                        ) : null}
+                      </div>
                     </div>
 
                     <div>
