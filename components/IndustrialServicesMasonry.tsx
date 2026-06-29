@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { renderServiceDescription } from "../lib/serviceDescription";
 
 /* ---------------------------------------------------------
  * ANIMATION STORYBOARD
@@ -70,7 +71,7 @@ const SERVICES = [
     number: "03",
     title: "Manufacturing Facility Construction",
     description:
-      "Factory spaces planned for throughput, scalability, and clean operational flow.",
+      "Construction of modern manufacturing facilities designed for efficient production, future expansion, and operational excellence.",
     image:
       "/Industrial%20Construction%20Services/Complete%20Industrial%20Construction%20Services/manufacturing.jpg",
     imageAlt: "Large industrial interior with manufacturing infrastructure",
@@ -83,7 +84,7 @@ const SERVICES = [
     number: "04",
     title: "Industrial Civil Works",
     description:
-      "Foundations, structural frames, and civil packages for complex industrial projects.",
+      "Comprehensive civil works for factories, industrial buildings, and infrastructure projects with precision engineering.",
     image:
       "/Industrial%20Construction%20Services/Complete%20Industrial%20Construction%20Services/Industrial%20Civil.jpg",
     imageAlt: "Heavy civil works and structural construction for an industrial site",
@@ -122,7 +123,7 @@ const SERVICES = [
     number: "07",
     title: "EOT Crane Structural Systems",
     description:
-      "Engineered supports for EOT cranes and heavy industrial handling systems.",
+      "Structural solutions engineered for heavy-duty industrial cranes and manufacturing plants.",
     image:
       "/Industrial%20Construction%20Services/Complete%20Industrial%20Construction%20Services/eot%20crane.jpg",
     imageAlt: "Steel crane structures inside a heavy industrial facility",
@@ -160,7 +161,7 @@ export default function IndustrialServicesMasonry() {
             Capability Catalogue
           </div>
           <h2 className="mt-5 text-4xl font-semibold tracking-[-0.03em] text-[#09090B] md:text-5xl">
-            Complete Industrial Construction Services
+            Complete Factory Construction &amp; Industrial EPC Services
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#52525B] md:text-xl">
             End-to-end capabilities for factories, manufacturing plants, process facilities, utility systems, and heavy industrial infrastructure.
@@ -274,7 +275,7 @@ export default function IndustrialServicesMasonry() {
                             : "max-w-[17rem] text-[0.86rem] leading-5"
                       }`}
                     >
-                      {service.description}
+                      {renderServiceDescription(service.description)}
                     </p>
 
                     {isFeatured || isWide ? (

@@ -4,13 +4,18 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { renderServiceDescription } from "../lib/serviceDescription";
+import {
+  renderBoldPhrases,
+  SERVICE_INTRO_PHRASES,
+} from "../lib/boldPhrases";
 
 const SERVICES = [
   {
     number: "01",
     title: "Turnkey Factory Construction",
     description:
-      "Complete industrial turnkey delivery covering design coordination, structural execution, construction management, and commissioning support for factory and plant environments.",
+      "Complete factory construction services including planning, design, engineering, civil works, steel structures, and project handover.",
     scopes: [
       "Architectural Design",
       "Structural Engineering",
@@ -41,7 +46,7 @@ const SERVICES = [
     number: "03",
     title: "Manufacturing Facility Construction",
     description:
-      "Factory spaces planned for productivity, scalability, and clean operational flow.",
+      "Construction of modern manufacturing facilities designed for efficient production, future expansion, and operational excellence.",
     scopes: [
       "Smart Factories",
       "Assembly Plants",
@@ -56,7 +61,7 @@ const SERVICES = [
     number: "04",
     title: "Industrial Civil Works",
     description:
-      "Heavy-duty foundations, structural systems, and site development for large industrial programs.",
+      "Comprehensive civil works for factories, industrial buildings, and infrastructure projects with precision engineering.",
     scopes: [
       "Foundations",
       "Structural Frames",
@@ -91,7 +96,7 @@ const SERVICES = [
     number: "07",
     title: "EOT Crane Structural Systems",
     description:
-      "Engineered support structures for heavy-duty crane operations and industrial movement systems.",
+      "Structural solutions engineered for heavy-duty industrial cranes and manufacturing plants.",
     scopes: [
       "Crane Supports",
       "Heavy Movement",
@@ -198,7 +203,7 @@ function ServiceCard({
               </h3>
 
               <p className="mt-5 max-w-xl text-[0.98rem] leading-7 text-[#52525B] md:text-base">
-                {service.description}
+                {renderServiceDescription(service.description)}
               </p>
 
               <div className="mt-7 flex flex-wrap gap-2.5">
@@ -277,7 +282,7 @@ function ServiceCard({
         </h3>
 
         <p className="mt-4 max-w-md text-[0.92rem] leading-6 text-[#52525B]">
-          {service.description}
+          {renderServiceDescription(service.description)}
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2.5">
@@ -330,22 +335,16 @@ export default function IndustrialServicesUnified() {
               Capability Catalogue
             </div>
             <h2 className="mt-5 max-w-xl text-[2.8rem] font-semibold tracking-[-0.04em] text-[#09090B] md:text-[3.5rem] md:leading-[1.02]">
-              Complete Industrial Construction Services
+              Complete Factory Construction &amp; Industrial EPC Services
             </h2>
           </div>
 
           <div className="max-w-4xl">
             <p className="text-lg leading-8 text-[#52525B] md:text-[1.12rem] md:leading-9">
-              Our team specializes in industrial construction services and
-              factory infrastructure development for large manufacturing
-              projects, industrial plants, utility systems, and heavy
-              engineering environments.
-            </p>
-            <p className="mt-5 text-sm leading-7 text-[#52525B] md:text-[0.98rem]">
-              This section brings the full capability stack into one coordinated
-              service view, rather than splitting core delivery, execution
-              scope, and infrastructure expertise across multiple repeated
-              sections.
+              {renderBoldPhrases(
+                "From factory construction and manufacturing plant construction to industrial civil works and utility systems, Mekark delivers complete turnkey solutions for industrial projects. Our in-house engineering, manufacturing, and execution teams ensure quality, speed, and seamless project delivery.",
+                SERVICE_INTRO_PHRASES,
+              )}
             </p>
           </div>
         </motion.div>

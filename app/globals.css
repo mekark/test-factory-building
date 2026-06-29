@@ -97,6 +97,34 @@ body {
     color: rgba(255, 255, 255, 0.96);
   }
 
+  .hero-eyebrow {
+    max-width: 19rem;
+    margin-inline: auto;
+    font-size: clamp(0.625rem, 2.15vw, 0.72rem);
+    font-weight: 600;
+    line-height: 1.65;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-wrap: balance;
+    color: #c4161c;
+  }
+
+  @media (min-width: 640px) {
+    .hero-eyebrow {
+      max-width: 28rem;
+      margin-inline: 0;
+      line-height: 1.55;
+      letter-spacing: 0.28em;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-eyebrow {
+      max-width: none;
+      letter-spacing: 0.38em;
+    }
+  }
+
   .ambient-cube-wrap {
     position: absolute;
     will-change: transform;

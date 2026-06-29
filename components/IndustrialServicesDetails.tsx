@@ -3,6 +3,11 @@
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
+import { renderServiceDescription } from "../lib/serviceDescription";
+import {
+  renderBoldPhrases,
+  SERVICE_INTRO_PHRASES,
+} from "../lib/boldPhrases";
 
 const SERVICES = [
   {
@@ -43,7 +48,7 @@ const SERVICES = [
     number: "03",
     title: "Manufacturing Facility Construction",
     description:
-      "High-performance manufacturing spaces planned for throughput, scale, and operational clarity.",
+      "Construction of modern manufacturing facilities designed for efficient production, future expansion, and operational excellence.",
     scopes: [
       "Assembly Planning",
       "Factory Build",
@@ -60,7 +65,7 @@ const SERVICES = [
     number: "04",
     title: "Industrial Civil Works",
     description:
-      "Heavy-duty civil packages built for foundations, structural systems, and long-term industrial performance.",
+      "Comprehensive civil works for factories, industrial buildings, and infrastructure projects with precision engineering.",
     scopes: [
       "Foundations",
       "Structural Frames",
@@ -106,7 +111,7 @@ const SERVICES = [
     number: "07",
     title: "EOT Crane Structural Systems",
     description:
-      "Engineered support systems for heavy lifting, movement, and industrial expansion programs.",
+      "Structural solutions engineered for heavy-duty industrial cranes and manufacturing plants.",
     scopes: [
       "Crane Support",
       "Heavy Movement",
@@ -212,7 +217,7 @@ function FeaturedServiceCard({
             </h3>
 
             <p className="mt-5 max-w-[28rem] text-[0.98rem] leading-7 text-[#52525B] md:text-base">
-              {service.description}
+              {renderServiceDescription(service.description)}
             </p>
 
             <div className="mt-7 flex flex-wrap gap-2.5">
@@ -337,7 +342,7 @@ function MasonryServiceCard({
         </h3>
 
         <p className="mt-4 max-w-[19rem] text-[0.92rem] leading-6 text-[#52525B]">
-          {service.description}
+          {renderServiceDescription(service.description)}
         </p>
 
         <div className="mt-6 flex flex-wrap gap-2.5">
@@ -393,7 +398,10 @@ export default function IndustrialServicesDetails() {
             Industrial Construction Expertise
           </h2>
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-[#52525B] md:text-xl">
-            Our team specializes in industrial construction services and factory infrastructure development for large manufacturing projects and industrial plants.
+            {renderBoldPhrases(
+              "From factory construction and manufacturing plant construction to industrial civil works and utility systems, Mekark delivers complete turnkey solutions for industrial projects. Our in-house engineering, manufacturing, and execution teams ensure quality, speed, and seamless project delivery.",
+              SERVICE_INTRO_PHRASES,
+            )}
           </p>
         </motion.div>
 

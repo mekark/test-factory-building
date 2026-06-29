@@ -3,55 +3,48 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { FAQ_BOLD_PHRASES, renderBoldPhrases } from "../lib/boldPhrases";
 
 const faqs = [
   {
-    q: "What services does an industrial construction company provide?",
-    a: "An industrial construction company delivers design, civil works, fabrication, and turnkey industrial building construction.",
+    q: "What makes Mekark different from other industrial civil construction companies?",
+    a: "Mekark is a trusted industrial civil construction company with expertise in industrial building construction, factory development, and infrastructure projects. We focus on engineering precision, transparent execution, and timely project delivery.",
   },
   {
-    q: "Do you work as industrial construction contractors in Chennai?",
-    a: "Yes, we are industrial construction contractors in Chennai delivering complete industrial construction services and execution.",
+    q: "Can you handle large-scale factory and industrial construction projects?",
+    a: "Yes. As experienced industrial civil contractors and factory construction contractors, we execute manufacturing facilities, warehouses, industrial buildings, and large-scale infrastructure developments across India.",
   },
   {
-    q: "Are you industrial EPC contractors?",
-    a: "Yes, we operate as industrial EPC contractors managing engineering, procurement, and construction end-to-end.",
+    q: "Do you provide turnkey factory construction services?",
+    a: "Yes. Our turnkey factory construction solutions cover planning, engineering, civil works, project management, and execution, ensuring seamless delivery from concept to handover.",
   },
   {
-    q: "Do you handle both industrial civil and structural construction?",
-    a: "Yes, as industrial civil contractors and steel specialists, we provide integrated civil and structural execution.",
+    q: "Do you specialize in manufacturing facility construction?",
+    a: "Absolutely. As a leading manufacturing facility construction company, we develop production plants, assembly units, processing facilities, and industrial campuses tailored to operational requirements.",
   },
   {
-    q: "Do you work as industrial building contractors for large projects?",
-    a: "Yes, we are industrial building contractors executing large-scale industrial building construction projects across sectors.",
+    q: "What types of industrial projects do you undertake?",
+    a: "We specialize in industrial facility construction, industrial factory construction, warehouses, utility buildings, commercial-industrial developments, and supporting infrastructure projects.",
   },
   {
-    q: "Do you provide industrial roofing and shed construction services?",
-    a: "Yes, we are industrial roofing contractors and industrial shed contractors delivering durable industrial shed construction.",
+    q: "Do you provide industrial infrastructure construction services?",
+    a: "Yes. Our industrial infrastructure construction services include site development, internal roads, drainage systems, utility networks, foundations, and factory support infrastructure.",
   },
   {
-    q: "Do you offer factory building construction and turnkey factory construction?",
-    a: "Yes, we are factory building contractors providing turnkey factory construction and prefab factory construction solutions.",
+    q: "Why choose Mekark as your industrial turnkey contractor?",
+    a: "As experienced industrial turnkey contractors, we provide single-point accountability, efficient project management, quality execution, and predictable outcomes for industrial construction projects.",
   },
   {
-    q: "Are you PEB factory manufacturers and structural steel factory builders?",
-    a: "Yes, we are PEB factory manufacturers and structural steel factory builders delivering pre engineered factory buildings.",
+    q: "Do you undertake factory building construction projects across India?",
+    a: "Yes. We deliver factory building construction projects for manufacturers and industrial businesses across Chennai, Tamil Nadu, and major industrial hubs throughout India.",
   },
   {
-    q: "Can you handle large-scale factory construction projects?",
-    a: "Yes, we execute large scale factory construction including metal factory buildings with optimized design and fast delivery.",
+    q: "Do you provide industrial foundation and civil work services?",
+    a: "Yes. Our team includes experienced industrial foundation contractors and industrial civil work contractors, delivering foundations, structural works, and critical civil infrastructure for industrial projects.",
   },
   {
-    q: "Do you provide factory renovation and expansion services?",
-    a: "Yes, we handle factory renovation, upgrades, and multi story factory building expansion projects.",
-  },
-  {
-    q: "Why choose Mekark as your industrial construction company?",
-    a: "Mekark is an industrial construction company with 3000+ MT capacity, advanced machinery, and end-to-end execution.",
-  },
-  {
-    q: "What is the Mekark advantage in factory building projects?",
-    a: "The Mekark advantage includes automated fabrication, precision engineering, and reliable turnkey factory construction.",
+    q: "Do you provide RCC construction services for industrial buildings?",
+    a: "Yes. As established RCC building contractors, RCC construction contractors, and industrial RCC building contractors, we deliver durable reinforced concrete structures for factories, warehouses, and industrial facilities.",
   },
 ];
 
@@ -98,7 +91,7 @@ export default function FAQ() {
                   aria-expanded={isOpen}
                 >
                   <h3 className={`text-lg sm:text-xl font-bold transition-colors duration-300 ${isOpen ? 'text-[#C4161C]' : 'text-[#18181B]'}`}>
-                    {faq.q}
+                    {renderBoldPhrases(faq.q, FAQ_BOLD_PHRASES)}
                   </h3>
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
@@ -124,7 +117,7 @@ export default function FAQ() {
                       transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                     >
                       <div className="px-6 sm:px-8 pb-8 text-[#52525B] leading-relaxed text-lg">
-                        {faq.a}
+                        {renderBoldPhrases(faq.a, FAQ_BOLD_PHRASES)}
                       </div>
                     </motion.div>
                   )}

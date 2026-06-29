@@ -13,8 +13,7 @@ import TestimonialsSpotlight from "../components/TestimonialsSpotlight";
 import ClientLogos from "../components/ClientLogos";
 import AboutMekark from "../components/AboutMekark";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Phone, MessageCircle } from "lucide-react";
-import { ArrowUpRight } from "lucide-react";
+import { Phone, MessageCircle, ArrowUpRight, Check } from "lucide-react";
 import { body } from "framer-motion/client";
 
 type FormValues = {
@@ -67,6 +66,15 @@ const PROJECT_TYPES = [
   "Manufacturing Plant",
   "Industrial Infrastructure",
 ];
+
+const HERO_HIGHLIGHTS = [
+  "Complete Turnkey Factory Construction – From Design to Handover",
+  "Factory Construction Delivered in as Fast as 120 Days*",
+  "Advanced In-House Manufacturing for Superior Quality",
+  "Industrial EPC Contractor with ISO-Certified Standards",
+  "Dedicated Project Management for On-Time Delivery",
+  "Trusted by 500+ Industrial & Manufacturing Clients",
+] as const;
 
 const FORM_ENDPOINT = "/api/enquiry-form";
 const THANK_YOU_URL =
@@ -317,8 +325,8 @@ export default function Home() {
 
         <div className="relative z-20 mx-auto grid w-full max-w-7xl grid-cols-1 px-4 pb-10 sm:px-6 sm:pb-14 lg:grid-cols-2 lg:items-center lg:px-8">
           <div className="flex min-w-0 flex-col items-center justify-center py-8 text-center sm:items-start sm:text-left lg:max-w-2xl lg:py-12">
-            <div className="text-[0.72rem] font-semibold uppercase tracking-[0.38em] text-[#C4161C]">
-              Industrial Execution Partner
+          <div className="text-[0.72rem] font-semibold uppercase tracking-[0.38em] text-[#C4161C]">
+              India&apos;s Trusted Factory &amp; EPC Partner
             </div>
             <h1 className="hero-heading mt-5 text-balance drop-shadow-[0_14px_40px_rgba(9,9,11,0.46)]">
               <span className="hero-heading-line text-[clamp(2rem,6.4vw,4.45rem)] leading-[1]">
@@ -326,24 +334,36 @@ export default function Home() {
                   Turnkey
                 </span>{" "}
                 <span className="hero-heading-main inline-block !text-[#C4161C]">
-                  EPC Industrial Construction Solutions
+                  Factory Construction &
                 </span>
               </span>
               <span className="hero-heading-line mt-2 text-[clamp(2.08rem,6.7vw,4.65rem)] leading-[0.98]">
                 <span className="hero-heading-main !font-medium">
-                  for Modern Manufacturing Facilities
+                  Industrial EPC Solutions
                 </span>
               </span>
             </h1>
             <p className="mt-5 max-w-xl text-[0.96rem] leading-7 text-white/84 md:text-[1rem] md:leading-8">
               <span className="font-oswald tracking-[0.04em]">
-                Factory Construction
-              </span>{" "}
+              Factory Construction Company for Manufacturing Plants, Industrial Buildings & Factory Sheds              </span>{" "}
               &amp;{" "}
               <span className="font-oswald tracking-[0.04em]">
                 Industrial Plant Builders
               </span>
             </p>
+
+            <ul className="mt-6 w-full max-w-xl space-y-2.5 text-left">
+              {HERO_HIGHLIGHTS.map((highlight) => (
+                <li key={highlight} className="flex items-start gap-2.5">
+                  <span className="mt-0.5 flex h-4 w-4 flex-none items-center justify-center text-[#C4161C]">
+                    <Check className="h-4 w-4" strokeWidth={2.5} />
+                  </span>
+                  <span className="text-[0.88rem] leading-6 text-white/88 sm:text-[0.92rem]">
+                    {highlight}
+                  </span>
+                </li>
+              ))}
+            </ul>
             {/* REVIEW BADGE */}
 
             <div className="mt-8 flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:text-left">
@@ -613,7 +633,11 @@ export default function Home() {
                         Select timeline
                       </option>
                       {START_TIMELINES.map((option) => (
-                        <option key={option} value={option} className="text-black">
+                        <option
+                          key={option}
+                          value={option}
+                          className="text-black"
+                        >
                           {option}
                         </option>
                       ))}
@@ -650,7 +674,11 @@ export default function Home() {
                         Select budget range
                       </option>
                       {BUDGETS.map((option) => (
-                        <option key={option} value={option} className="text-black">
+                        <option
+                          key={option}
+                          value={option}
+                          className="text-black"
+                        >
                           {option}
                         </option>
                       ))}

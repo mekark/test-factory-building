@@ -20,28 +20,55 @@ export default function AboutMekark() {
               About Mekark
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-zinc-900 mb-8 tracking-tight">
-              Leading PEB Company in Chennai
+              Leading{" "}
+              <strong className="font-bold">Factory Construction Company</strong>{" "}
+              &amp;{" "}
+              <strong className="font-bold">Industrial EPC Contractor</strong> in
+              Chennai
             </h2>
             <div className="space-y-6 text-zinc-600 text-base leading-relaxed font-light">
               <p>
-                Mekark is a leading PEB company in Chennai, known for delivering
-                high-performance pre-engineered steel buildings for industrial
-                and commercial sectors. We operate one of Tamil Nadu’s highest
-                production capacity PEB manufacturing facilities, with 3000 tons
-                capability and a 6 lakh sq. ft. fully integrated campus.
+                Mekark is a leading{" "}
+                <strong className="font-semibold text-zinc-800">
+                  industrial construction company
+                </strong>{" "}
+                in Chennai, delivering high-performance pre-engineered steel
+                buildings and{" "}
+                <strong className="font-semibold text-zinc-800">
+                  factory construction
+                </strong>{" "}
+                solutions for industrial and commercial sectors. With one of
+                Tamil Nadu&apos;s largest PEB manufacturing facilities, featuring
+                a 40,000-ton annual production capacity and a 6 lakh sq. ft.
+                integrated campus, we ensure faster execution and consistent
+                quality.
               </p>
               <p>
-                Our ISO-certified and green-certified operations ensure
-                consistent quality, compliance, and sustainability across every
-                project. Backed by a fully automated factory with the latest
-                advanced machinery, Mekark delivers precision-engineered
-                components with speed and accuracy.
+                Our ISO-certified operations and advanced in-house manufacturing
+                facility ensure superior quality, faster execution, and on-time
+                delivery. As an experienced{" "}
+                <strong className="font-semibold text-zinc-800">
+                  industrial EPC contractor
+                </strong>
+                , we provide complete{" "}
+                <strong className="font-semibold text-zinc-800">
+                  factory construction services
+                </strong>
+                , from design and engineering to manufacturing, construction,
+                and project handover.
               </p>
               <p>
-                With a 300+ expert white-collar engineering team, we provide
-                complete solutions—from design and manufacturing to supply and
-                erection—ensuring seamless execution and faster project
-                delivery.
+                With a team of 400+ engineers and one of Tamil Nadu&apos;s
+                largest manufacturing facilities, Mekark delivers{" "}
+                <strong className="font-semibold text-zinc-800">
+                  industrial building construction
+                </strong>
+                ,{" "}
+                <strong className="font-semibold text-zinc-800">
+                  manufacturing facility construction
+                </strong>
+                , factory sheds, warehouses, and industrial infrastructure
+                projects across India.
               </p>
             </div>
 
