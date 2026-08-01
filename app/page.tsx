@@ -518,6 +518,15 @@ export default function Home() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                  <FormField
+                    id="projectLocation"
+                    label="Project Location"
+                    placeholder="City / site location"
+                    value={formValues.projectLocation}
+                    onChange={handleInputChange}
+                    error={formErrors.projectLocation}
+                  />
+
                   <div>
                     <label
                       htmlFor="projectType"
@@ -532,7 +541,11 @@ export default function Home() {
                       name="projectType"
                       value={formValues.projectType}
                       onChange={handleInputChange}
-                      className="h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 focus:border-[#C4161C] focus:bg-white/15"
+                      className={`h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 focus:border-[#C4161C] focus:bg-white/15 ${
+                        formErrors.projectType
+                          ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
+                          : ""
+                      }`}
                     >
                       <option value="" className="text-black">
                         Select Project Type
@@ -548,64 +561,70 @@ export default function Home() {
                         </option>
                       ))}
                     </select>
-                  </div>
 
-                  <div>
-                    <label
-                      htmlFor="sqft"
-                      className="mb-2 block text-sm font-medium text-white/80"
-                    >
-                      Project sq.ft
-                      <span className="ml-1 text-[#FF6B6B]">*</span>
-                    </label>
-
-                    <select
-                      id="sqft"
-                      name="sqft"
-                      value={formValues.sqft}
-                      onChange={handleInputChange}
-                      className={`h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 focus:border-[#C4161C] focus:bg-white/15 ${
-                        formErrors.sqft
-                          ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
-                          : ""
-                      }`}
-                    >
-                      <option value="" className="text-black">
-                        Select Project Size
-                      </option>
-
-                      <option
-                        value="10,000 - 20,000 Sq.ft"
-                        className="text-black"
-                      >
-                        10,000 - 20,000 Sq.ft
-                      </option>
-
-                      <option
-                        value="20,000 - 30,000 Sq.ft"
-                        className="text-black"
-                      >
-                        20,000 - 30,000 Sq.ft
-                      </option>
-
-                      <option
-                        value="30,000 - 50,000 Sq.ft"
-                        className="text-black"
-                      >
-                        30,000 - 50,000 Sq.ft
-                      </option>
-
-                      <option value="50,000+ Sq.ft" className="text-black">
-                        50,000+ Sq.ft
-                      </option>
-                    </select>
-
-                    {formErrors.sqft ? (
+                    {formErrors.projectType ? (
                       <p className="mt-1 text-xs text-[#FF6B6B]">
-                        {formErrors.sqft}
+                        {formErrors.projectType}
                       </p>
                     ) : null}
                   </div>
+                </div>
+
+                <div>
+                  <label
+                    htmlFor="sqft"
+                    className="mb-2 block text-sm font-medium text-white/80"
+                  >
+                    Project sq.ft
+                    <span className="ml-1 text-[#FF6B6B]">*</span>
+                  </label>
+
+                  <select
+                    id="sqft"
+                    name="sqft"
+                    value={formValues.sqft}
+                    onChange={handleInputChange}
+                    className={`h-[46px] w-full rounded-xl border border-white/10 bg-white/10 px-4 text-sm text-white outline-none backdrop-blur-md transition-all duration-300 focus:border-[#C4161C] focus:bg-white/15 ${
+                      formErrors.sqft
+                        ? "border-[#FF6B6B] focus:border-[#FF6B6B]"
+                        : ""
+                    }`}
+                  >
+                    <option value="" className="text-black">
+                      Select Project Size
+                    </option>
+
+                    <option
+                      value="10,000 - 20,000 Sq.ft"
+                      className="text-black"
+                    >
+                      10,000 - 20,000 Sq.ft
+                    </option>
+
+                    <option
+                      value="20,000 - 30,000 Sq.ft"
+                      className="text-black"
+                    >
+                      20,000 - 30,000 Sq.ft
+                    </option>
+
+                    <option
+                      value="30,000 - 50,000 Sq.ft"
+                      className="text-black"
+                    >
+                      30,000 - 50,000 Sq.ft
+                    </option>
+
+                    <option value="50,000+ Sq.ft" className="text-black">
+                      50,000+ Sq.ft
+                    </option>
+                  </select>
+
+                  {formErrors.sqft ? (
+                    <p className="mt-1 text-xs text-[#FF6B6B]">
+                      {formErrors.sqft}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
