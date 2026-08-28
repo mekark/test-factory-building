@@ -1,102 +1,77 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const UPSTREAM_ENDPOINT =
   "https://mekark-mail.onrender.com/api/enquiry-form";
 
-function resolveUpstreamOrigin(request: NextRequest) {
-  const directOrigin = request.headers.get("origin");
-
-  if (directOrigin) {
-    return directOrigin;
-  }
-
-  const forwardedHost =
-    request.headers.get("x-forwarded-host") ||
-    request.headers.get("host");
-
-  const forwardedProto =
-    request.headers.get("x-forwarded-proto") ||
-    "https";
-
-  if (forwardedHost) {
-    return `${forwardedProto}://${forwardedHost}`;
-  }
-
-  return new URL(request.url).origin;
-}
-
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   try {
     const body = await request.json();
+    const origin = request.headers.get("origin");
+    const referer = request.headers.get("referer");
 
-    // REQUIRED FIELDS ONLY
-
-    if (
-      !body.name ||
-      !body.phone ||
-      !body.service ||
-      !body.sqf
-    ) {
+    if (!body.name || !body.phone || !body.service || !body.sqf) {
       return NextResponse.json(
         {
           message:
             "Name, phone, project type and sqft are required",
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
-    const upstreamOrigin =
-      resolveUpstreamOrigin(request);
+    const payload = {
+      ...body,
+      sourceDomain:
+        body.sourceDomain ||
+        (origin ? new URL(origin).hostname : undefined) ||
+        (referer ? new URL(referer).hostname : undefined),
+      sourceUrl:
+        body.sourceUrl ||
+        body.pageUrl ||
+        referer ||
+        origin ||
+        undefined,
+    };
 
     const response = await fetch(UPSTREAM_ENDPOINT, {
       method: "POST",
-
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
-        Origin: upstreamOrigin,
+        ...(origin ? { Origin: origin } : {}),
+        ...(referer ? { Referer: referer } : {}),
       },
-
-      body: JSON.stringify(body),
-
-      cache: "no-store",
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
 
-      console.error(
-        "External API error:",
-        errorText
-      );
+      console.error("External API error:", errorText);
 
       return NextResponse.json(
         {
-          message:
-            "Failed to submit form to external service",
+          message: "Failed to submit form to external service",
         },
-        { status: response.status }
+        { status: response.status },
       );
     }
 
-    const data = await response
-      .json()
-      .catch(() => ({}));
+    const data = await response.json().catch(() => ({}));
 
     return NextResponse.json(
       {
         success: true,
         data,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("API route error:", error);
 
     return NextResponse.json(
       { message: "Internal server error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }
