@@ -77,8 +77,7 @@ const HERO_HIGHLIGHTS = [
 ] as const;
 
 const FORM_ENDPOINT = "/api/enquiry-form";
-const THANK_YOU_URL =
-  "https://factorybuildingmanufacturer.mekark.com/thank-you";
+const THANK_YOU_URL = "/thank-you";
 
 const validateForm = (values: FormValues): FormErrors => {
   const errors: FormErrors = {};

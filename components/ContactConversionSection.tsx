@@ -46,7 +46,7 @@ const BUDGETS = [
 
 const EASE_OUT = [0.215, 0.61, 0.355, 1] as const;
 const FORM_ENDPOINT = "/api/enquiry-form";
-const THANK_YOU_URL = "https://www.mekark.com/thank-you";
+const THANK_YOU_URL = "/thank-you";
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const LABEL_CLASSNAME =
   "mb-3 block text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-[#18181B]";
