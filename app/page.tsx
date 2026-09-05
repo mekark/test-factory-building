@@ -366,6 +366,9 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+            <p className="mt-2 text-[0.75rem] text-white/60">
+              *T&amp;C apply
+            </p>
             {/* REVIEW BADGE */}
 
             <div className="mt-8 flex flex-col items-center gap-4 text-center sm:flex-row sm:items-center sm:text-left">
