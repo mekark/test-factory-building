@@ -69,7 +69,7 @@ const PROJECT_TYPES = [
 
 const HERO_HIGHLIGHTS = [
   "Complete Turnkey Factory Construction – From Design to Handover",
-  "Factory Construction Delivered in as Fast as 120 Days*",
+  "Factory Construction Delivered in as Fast as 150 Days*",
   "Advanced In-House Manufacturing for Superior Quality",
   "Industrial EPC Contractor with ISO-Certified Standards",
   "Dedicated Project Management for On-Time Delivery",
