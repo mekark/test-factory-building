@@ -58,7 +58,7 @@ export default function AboutMekark() {
                 and project handover.
               </p>
               <p>
-                With a team of 400+ engineers and one of Tamil Nadu&apos;s
+                With a team of 175+ engineers and one of Tamil Nadu&apos;s
                 largest manufacturing facilities, Mekark delivers{" "}
                 <strong className="font-semibold text-zinc-800">
                   industrial building construction
