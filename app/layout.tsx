@@ -27,11 +27,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){function mark(node){if(!node||node.nodeType!==1)return;if(node.tagName==="LINK"&&node.rel==="stylesheet"){node.setAttribute("data-clarity-unmask","true");}}document.querySelectorAll('link[rel="stylesheet"]').forEach(mark);new MutationObserver(function(records){records.forEach(function(record){record.addedNodes.forEach(mark);});}).observe(document.documentElement,{childList:true,subtree:true});})();`,
-          }}
-        />
         <Script id="google-tag-manager" strategy="beforeInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
