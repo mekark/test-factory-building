@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import Script from "next/script";
-import FloatingWhatsApp from "../components/FloatingWhatsApp";
 import "./globals.css";
 
 const GTM_ID = "GTM-5SBMM86H";
@@ -37,7 +36,6 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        <FloatingWhatsApp />
         <div className="relative">{children}</div>
         {/* Google Tag Manager: the dataLayer is created straight away (so early events are
             queued), but gtm.js itself is only requested GTM_DELAY_MS after the page loads,
@@ -49,19 +47,6 @@ new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','${GTM_ID}');},${GTM_DELAY_MS});`}
-        </Script>
-        <Script id="tawk-to" strategy="afterInteractive">
-          {`
-      var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-      (function(){
-      var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-      s1.async=true;
-      s1.src='https://embed.tawk.to/69fd7e65427c251c368c1e92/1jo33bfff';
-      s1.charset='UTF-8';
-      s1.setAttribute('crossorigin','*');
-      s0.parentNode.insertBefore(s1,s0);
-      })(); 
-    `}
         </Script>
       </body>
     </html>

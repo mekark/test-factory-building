@@ -186,11 +186,13 @@ export default function HeroMobile() {
           <p className="whitespace-nowrap text-[14px] font-semibold uppercase leading-[20px] text-[#ed1d23]">
             Trusted Across India
           </p>
-          <div className="flex w-full flex-wrap items-start gap-x-[18px] gap-y-2">
+          {/* One row always: tiles are 64px wide (Figma) but shrink on narrow phones such as the
+              iPhone SE, and the gap tightens below 380px so all four logos still fit. */}
+          <div className="flex w-full flex-nowrap items-start gap-x-[18px] max-[379px]:gap-x-2">
             {LOGOS.map((logo) => (
               <div
                 key={logo.name}
-                className="flex h-[40px] w-[64px] shrink-0 items-center justify-center overflow-hidden rounded-[6px] bg-[#f9f6f7]"
+                className="flex h-[40px] min-w-0 max-w-[64px] flex-1 basis-0 items-center justify-center overflow-hidden rounded-[6px] bg-[#f9f6f7]"
               >
                 <img
                   src={logo.src}
