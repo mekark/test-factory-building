@@ -19,7 +19,7 @@ export default function FaqSection() {
 
   return (
     /* ==========================================================
-       SECTION WRAPPER — full-bleed #f9f6f7, 1920×1472 design canvas
+       SECTION WRAPPER — full-bleed #f9f6f7, 1920×1348 design canvas
        ========================================================== */
     <section id="faq" className="overflow-x-clip bg-[#f9f6f7] font-sans">
       {/* ---------- Mobile / tablet layout (below 1280px): separate component, see FaqMobile.tsx ---------- */}
@@ -30,7 +30,7 @@ export default function FaqSection() {
         {/* ---------- Design canvas (zoomed to the viewport on desktop) ---------- */}
         <div
           ref={canvasRef}
-          className="canvas-zoom relative mx-auto flex w-full flex-col gap-10 px-5 py-14 sm:px-8 sm:py-16 xl:block xl:h-[1472px] xl:w-[1920px] xl:p-0"
+          className="canvas-zoom relative mx-auto flex w-full flex-col gap-10 px-5 py-14 sm:px-8 sm:py-16 xl:block xl:h-[1348px] xl:w-[1920px] xl:p-0"
         >
           {/* ======================================================
               LEFT COLUMN — FAQ badge, heading, placeholder text, illustration
@@ -38,7 +38,7 @@ export default function FaqSection() {
           {/* Desktop: the outer box is as tall as the whole canvas; the inner box is
               sticky, so it stays in view while the question list scrolls past. */}
           <div className="xl:absolute xl:inset-y-0 xl:left-[107px] xl:w-[692px]">
-            <div className="flex flex-col items-start gap-[24px] xl:sticky xl:top-[20px] xl:mt-[28.67px] xl:gap-[37px]">
+            <div className="flex flex-col items-start gap-[24px] xl:sticky xl:top-[22px] xl:gap-[37px]">
             <div className="flex w-full flex-col items-start gap-[25.467px]">
               {/* Badge */}
               <span className="flex items-center rounded-full border-[1.333px] border-solid border-[#fcd5d0] bg-[#feeae7] px-[20px] py-[9.333px] text-[16px] font-semibold leading-[26px] text-[#cc000a]">
@@ -74,7 +74,7 @@ export default function FaqSection() {
           {/* ======================================================
               RIGHT COLUMN — accordion list
               ====================================================== */}
-          <div className="xl:absolute xl:left-[901.44px] xl:top-[110.33px] xl:w-[911.556px]">
+          <div className="xl:absolute xl:left-[901.44px] xl:top-[142.33px] xl:w-[911.556px]">
             <ul>
               {FAQS.map((faq, index) => {
                 const isOpen = openIndex === index;

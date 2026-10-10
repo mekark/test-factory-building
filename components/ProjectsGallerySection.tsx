@@ -82,12 +82,6 @@ export default function ProjectsGallerySection() {
           ref={canvasRef}
           className="canvas-zoom relative mx-auto w-full px-5 py-12 sm:px-8 sm:py-16 xl:h-[1427px] xl:w-[1920px] xl:p-0"
         >
-          {/* ---------- Background: soft red glows in the top-right and bottom-left corners ---------- */}
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_360px_400px_at_100%_0,rgba(237,32,36,0.32)_0,rgba(237,32,36,0)_60%),radial-gradient(ellipse_400px_440px_at_0_100%,rgba(237,32,36,0.32)_0,rgba(237,32,36,0)_60%)] xl:bg-[radial-gradient(ellipse_927px_997.6px_at_100%_0,rgba(237,32,36,0.32)_0,rgba(237,32,36,0)_60%),radial-gradient(ellipse_989px_1064.7px_at_0_100%,rgba(237,32,36,0.32)_0,rgba(237,32,36,0)_60%)]"
-          />
-
           {/* ======================================================
               HEADING — eyebrow, two-tone title, sub-heading
               ====================================================== */}

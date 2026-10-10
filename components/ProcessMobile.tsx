@@ -6,203 +6,143 @@ import { Space_Grotesk } from "next/font/google";
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["700"] });
 
 /* ============================================================
-   MOBILE "OUR PROCESS" (Figma "Landing Page", 390 × 1233)
-   Shown below 1280px only; the desktop section is untouched.
+   MOBILE "OUR PROCESS" (Figma "Process Step", 390 × 794)
+   Shown below 1280px only; the desktop section is separate.
    ============================================================ */
 
 /* ============================================================
    STEP DATA
-   `box` / `img` are the insets of the glyph inside the 24px icon frame and of
-   the SVG's built-in padding (copied from Figma). Widths and line heights are
-   the Figma text boxes, which decide where each title and body wraps.
+   `box` / `img` are the insets of the glyph inside the 20px icon frame and of
+   the SVG's built-in padding (copied from Figma).
    ============================================================ */
 
 type Step = {
   number: string;
-  numberColor: string;
   title: string;
   description: string;
-  icon?: string;
-  box?: string;
-  img?: string;
-  textWidth: number;
-  titleLeading: string;
-  descLeading: string;
-  descWidth?: number;
+  icon: string;
+  box: string;
+  img: string;
 };
 
 const STEPS: Step[] = [
   {
     number: "01",
-    numberColor: "#ff8f92",
-    title: "Understanding Your Production Vision",
-    description:
-      "We study your manufacturing process, production targets, site constraints, and future expansion needs so the project begins with a clear operational foundation.",
+    title: "Site & Project Feasibility",
+    description: "Geotechnical, regulatory, and budget checks.",
     icon: "/process/mobile/clipboard-check.svg",
-    box: "inset-[8.33%_16.67%]",
-    img: "inset-[-5%_-6.25%]",
-    textWidth: 279,
-    titleLeading: "leading-[25px]",
-    descLeading: "leading-[20px]",
-    descWidth: 279,
+    box: "inset-[8.33%_16.66%_8.34%_16.67%]",
+    img: "inset-[-4.5%_-5.62%]",
   },
   {
     number: "02",
-    numberColor: "#ff8f92",
-    title: "Smart Factory Design & Engineering",
-    description:
-      "We shape layout logic, structural direction, service coordination, and delivery planning into a build-ready engineering path for efficient industrial execution.",
+    title: "Design & Engineering",
+    description: "In-house engineering, plant layout and utility planning.",
     icon: "/process/mobile/drafting-compass.svg",
     box: "inset-[12.5%]",
-    img: "inset-[-5.56%]",
-    textWidth: 236,
-    titleLeading: "leading-[22px]",
-    descLeading: "leading-[18px]",
-    descWidth: 236,
+    img: "inset-[-5%]",
   },
   {
     number: "03",
-    numberColor: "#ff8f92",
-    title: "Building the Industrial Backbone",
+    title: "Civil Works & Foundations",
     description:
-      "Civil works, foundations, steel framing, and primary infrastructure are executed with disciplined sequencing to create a strong operational base.",
-    icon: "/process/mobile/factory.svg",
-    textWidth: 284,
-    titleLeading: "leading-[22px]",
-    descLeading: "leading-[18px]",
-    descWidth: 279,
+      "Disciplined sequencing of civil works, steel framing and infrastructure.",
+    icon: "/process/mobile/hard-hat.svg",
+    box: "inset-[16.67%_8.33%_20.84%_8.33%]",
+    img: "inset-[-6%_-4.5%_-6.01%_-4.5%]",
   },
   {
     number: "04",
-    numberColor: "#ff8f92",
-    title: "Integrating Plant Utilities & Systems",
+    title: "MEP Integration",
     description:
-      "Electrical systems, piping, mechanical services, and water treatment infrastructure are integrated so the facility works as one coordinated plant environment.",
-    icon: "/process/mobile/wrench.svg",
-    textWidth: 280,
-    titleLeading: "leading-[22px]",
-    descLeading: "leading-[18px]",
-    descWidth: 280,
+      "Electrical systems, piping, mechanical works and utility services.",
+    icon: "/process/mobile/cable.svg",
+    box: "inset-[12.5%_8.33%]",
+    img: "inset-[-5%_-4.5%]",
   },
   {
     number: "05",
-    numberColor: "#ffa5a8",
-    title: "Ready for Production",
-    description:
-      "Testing, commissioning, final checks, and closeout are completed so the facility is handed over ready for safe and stable manufacturing operations.",
-    icon: "/process/mobile/circle-check.svg",
-    box: "inset-[8.33%]",
-    img: "inset-[-5%]",
-    textWidth: 283,
-    titleLeading: "leading-[22px]",
-    descLeading: "leading-[18px]",
-    descWidth: 283,
+    title: "Quality Validation",
+    description: "Inspection, installation & compliance checks.",
+    icon: "/process/mobile/shield-check.svg",
+    box: "inset-[8.33%_16.67%_8.32%_16.67%]",
+    img: "inset-[-4.5%_-5.63%]",
   },
   {
-    // Step 06 is an unfinished placeholder in the Figma design: empty tile, "-" title and body.
     number: "06",
-    numberColor: "#ff8f92",
-    title: "-",
-    description: "-",
-    textWidth: 236,
-    titleLeading: "leading-[22px]",
-    descLeading: "leading-[18px]",
+    title: "Handover & After-Sales",
+    description: "Snag clearance, documentation, and support.",
+    icon: "/process/mobile/handshake.svg",
+    box: "inset-[12.5%_8.33%_12%_8.33%]",
+    img: "inset-[-4.97%_-4.5%]",
   },
 ];
 
 export default function ProcessMobile() {
   return (
     /* ==========================================================
-       MOBILE FRAME — #f9f6f7, one 350px column with 20px side padding
+       MOBILE FRAME — white, one 350px column with 20px side padding
        ========================================================== */
-    <div className="bg-[#f9f6f7] px-5 pb-[29px] pt-[30px] font-sans xl:hidden">
-      <div className="mx-auto flex w-full max-w-[350px] flex-col items-center gap-6">
+    <div className="mobile-col bg-white px-5 pb-[52px] pt-8 font-sans xl:hidden">
+      <div className="mx-auto flex w-full max-w-[350px] flex-col items-start gap-[14px]">
         {/* ---------- Heading + sub-heading ---------- */}
-        <div className="flex w-full max-w-[324px] flex-col items-start gap-3">
+        <div className="flex w-full flex-col items-start gap-[6px]">
           <h2 className="w-full text-[28px] font-bold leading-[34px] text-[#0f172a]">
-            Our Process
+            Our <span className="text-[#ed1d23]">Turnkey Factory</span>{" "}
+            Construction
           </h2>
           <p className="w-full text-[14px] font-normal leading-[20px] text-[#64748b]">
-            A connected five-step project path that moves from production
-            intent to engineering, execution, systems integration, and
-            production-ready handover.
+            From the first consultation to final handover, our factory
+            construction services follow a proven 6-step process, whether you
+            are building a new plant or planning a factory expansion.
           </p>
         </div>
 
-        {/* ---------- Steps: icon tile on the left, text on the right ---------- */}
-        <div className="relative flex w-full flex-col items-start gap-5">
-          {/* Connector line behind all six tiles (centre of the 50px tile). It starts inside
-              the first tile and ends at the middle of the last one (54px above the bottom:
-              the last step is 79px tall and its tile is 50px, so tile centre = 79 - 25). */}
-          <div
-            aria-hidden
-            className="absolute bottom-[54px] left-[24.33px] top-[12px] z-0 w-[1.333px] bg-[#e4dfe0]"
-          />
+        {/* ---------- Timeline: numbered dashed circle + card per step ---------- */}
+        <ol className="relative flex w-full flex-col gap-[26px]">
+          {STEPS.map((step, index) => (
+              <li key={step.number} className="relative flex w-full items-center gap-[17px]">
+                {/* Preserve the exported timeline's native geometry. */}
+                {index === 0 && (
+                  <img
+                    src="/process/mobile/timeline.svg"
+                    alt=""
+                    className="pointer-events-none absolute left-[15.5px] top-[43.5px] max-w-none"
+                  />
+                )}
 
-          {STEPS.map((step) => (
-            <article key={step.number} className="relative z-10 flex w-full items-start gap-4">
-              {/* Icon tile: white card, 8px radius, #e4dfe0 hairline */}
-              <div className="relative size-[50px] shrink-0">
-                <div className="absolute left-0 top-0 size-[50px] rounded-[8px] border-[0.917px] border-solid border-[#e4dfe0] bg-white" />
-                {step.icon ? (
-                  <div className="absolute left-1/2 top-1/2 size-[24px] -translate-x-1/2 -translate-y-1/2 overflow-hidden">
-                    {step.box ? (
-                      <div className={`absolute ${step.box}`}>
-                        <div className={`absolute ${step.img}`}>
-                          <img
-                            src={step.icon}
-                            alt=""
-                            className="block size-full max-w-none"
-                          />
-                        </div>
-                      </div>
-                    ) : (
-                      <img
-                        src={step.icon}
-                        alt=""
-                        className="absolute inset-0 block size-full max-w-none"
-                      />
-                    )}
-                  </div>
-                ) : null}
-              </div>
-
-              {/* Number, title and description */}
-              <div
-                className="flex min-w-0 flex-col items-start justify-center gap-2"
-                style={{ width: step.textWidth, maxWidth: "calc(100% - 66px)" }}
-              >
-                <p
-                  className={`${spaceGrotesk.className} text-[18px] font-bold leading-[normal]`}
-                  style={{ color: step.numberColor }}
+                {/* Step number in a dashed circle */}
+                <span
+                  className={`${spaceGrotesk.className} relative z-10 flex size-[33px] shrink-0 items-center justify-center rounded-full border border-dashed border-[#bcbcbc] bg-white pb-2 pl-2 pr-[9px] pt-[7px] text-[14px] font-bold leading-[normal] text-[#080808]`}
                 >
                   {step.number}
-                </p>
-                <div className="flex w-full flex-col items-start gap-2">
-                  <h3
-                    className={`w-full text-[18px] font-bold text-[#0f172a] ${step.titleLeading}`}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    className={`max-w-full text-[14px] font-normal text-[#64748b] ${step.descLeading}`}
-                    style={{ width: step.descWidth }}
-                  >
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+                </span>
 
-        {/* ---------- Footer placeholder: short pink rule + "text" label (as in the design) ---------- */}
-        <div className="flex flex-col items-center gap-3">
-          <div aria-hidden className="h-[1.333px] w-[165px] bg-[#ffdcdd]" />
-          <p className="text-center text-[20px] font-bold leading-[normal] text-[#9a9a9a]">
-            text
-          </p>
-        </div>
+                {/* Card: icon + title + description */}
+                <div className="relative z-10 flex min-w-0 flex-1 items-center gap-[10px] rounded-[6px] bg-[#fffcfc] py-[6px] pl-[10px] pr-[9px] drop-shadow-[-1px_1px_3px_rgba(30,30,30,0.1)]">
+                  <div className="relative size-[20px] shrink-0 overflow-clip">
+                    <div className={`absolute ${step.box}`}>
+                      <div className={`absolute ${step.img}`}>
+                        <img
+                          src={step.icon}
+                          alt=""
+                          className="block max-w-none"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex min-w-0 flex-1 flex-col items-start gap-px">
+                    <h3 className={`w-full text-[16px] font-semibold text-[#0f172a] ${index === 0 ? "leading-[24px]" : "leading-[normal]"}`}>
+                      {step.title}
+                    </h3>
+                    <p className="w-full text-[12px] font-normal leading-[20px] text-[#64748b]">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              </li>
+          ))}
+        </ol>
       </div>
     </div>
   );
