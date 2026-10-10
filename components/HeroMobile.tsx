@@ -38,7 +38,7 @@ const LOGOS = [
 
 // Suffix colours differ slightly per stat in the design.
 const STATS = [
-  { value: "200", suffix: "+", suffixColor: "#c4161c", label: "Projects" },
+  { value: "300", suffix: "+", suffixColor: "#c4161c", label: "Projects" },
   { value: "18", suffix: "+", suffixColor: "#cc000a", label: "years Experience" },
   { value: "40,000 ", suffix: "MT", suffixColor: "#c4161c", label: "Annual Production" },
   { value: "175", suffix: "+", suffixColor: "#c4161c", label: "Engineering Team" },
@@ -69,7 +69,7 @@ export default function HeroMobile() {
     /* ==========================================================
        MOBILE FRAME — one 390px column, page background shows beside it on tablets
        ========================================================== */
-    <div className="relative mx-auto w-full max-w-[390px] overflow-hidden bg-[#060606] pb-[36px] pt-[44px] font-sans xl:hidden">
+    <div className="relative mx-auto w-full max-w-[390px] overflow-hidden bg-[#060606] pb-[36px] pt-[16px] font-sans xl:hidden">
       {/* ======================================================
           BACKGROUND STACK (bottom → top), positioned as in Figma.
           Left offsets/widths are % of the frame so it scales with the column;
@@ -138,6 +138,8 @@ export default function HeroMobile() {
                 width={1672}
                 height={941}
                 sizes="390px"
+                loading="eager"
+                fetchPriority="high"
                 className="absolute bottom-[-1px] left-0 h-auto w-full max-w-none"
               />
               <div className="absolute bottom-px left-0 h-[108px] w-full bg-[linear-gradient(182.77deg,rgba(30,30,30,0)_1.0095%,#1e1e1e_99.312%)]" />

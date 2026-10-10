@@ -53,7 +53,7 @@ const CLIENT_LOGOS = [
 
 // Stats: value (white) + suffix (red, each with its own Figma colour).
 const STATS = [
-  { value: "200", suffix: "+", suffixColor: "#c4161c", label: "Projects" },
+  { value: "300", suffix: "+", suffixColor: "#c4161c", label: "Projects" },
   { value: "18", suffix: "+", suffixColor: "#cc000a", label: "years Experience" },
   { value: "40,000 ", suffix: "MT", suffixColor: "#ed1d23", label: "Annual Production" },
   { value: "175", suffix: "+", suffixColor: "#c4161c", label: "Engineering Team" },
