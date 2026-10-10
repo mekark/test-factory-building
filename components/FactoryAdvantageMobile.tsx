@@ -49,7 +49,8 @@ export default function FactoryAdvantageMobile() {
           alt="Mekark factory construction site with an engineer and a billboard reading: we build factories, you build future"
           width={583}
           height={262}
-          sizes="583px"
+          sizes="150vw"
+          quality={60}
           className="pointer-events-none absolute left-0 top-[-13px] h-[262px] w-[583px] max-w-none object-cover"
         />
       </div>

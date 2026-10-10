@@ -61,7 +61,8 @@ export default function ProjectsGalleryMobile() {
                     src={tile.src}
                     alt={tile.alt}
                     fill
-                    sizes="400px"
+                    sizes="100vw"
+                    quality={60}
                     className="object-fill"
                   />
                 </div>
@@ -70,7 +71,8 @@ export default function ProjectsGalleryMobile() {
                   src={tile.src}
                   alt={tile.alt}
                   fill
-                  sizes="400px"
+                  sizes="100vw"
+                  quality={60}
                   className="object-cover"
                 />
               )}

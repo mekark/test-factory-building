@@ -85,7 +85,8 @@ export default function HeroMobile() {
           alt=""
           width={941}
           height={1672}
-          sizes="400px"
+          sizes="101vw"
+          quality={60}
           className="absolute left-[-0.82%] top-[-76.25px] h-[698.67px] w-[100.82%] max-w-none"
         />
         {/* 2. Steel frame at dusk, tall photo */}
@@ -94,7 +95,8 @@ export default function HeroMobile() {
           alt=""
           width={941}
           height={1672}
-          sizes="950px"
+          sizes="241vw"
+          quality={60}
           className="absolute left-[-70.46%] top-[15.44px] h-[1671.95px] w-[241.28%] max-w-none"
         />
         {/* 3. Steel frame, second crop behind the form */}
@@ -103,7 +105,8 @@ export default function HeroMobile() {
           alt=""
           width={714}
           height={2202}
-          sizes="510px"
+          sizes="130vw"
+          quality={60}
           className="absolute left-[-15.13%] top-[419px] h-[1556px] w-[129.49%] max-w-none object-cover"
         />
         {/* 4. 40% black wash from below the hero image */}
@@ -114,7 +117,8 @@ export default function HeroMobile() {
           alt=""
           width={941}
           height={1672}
-          sizes="1110px"
+          sizes="283vw"
+          quality={60}
           className="absolute left-[-91.23%] top-[-8.54px] h-[1962px] w-[282.86%] max-w-none"
         />
         <img
@@ -144,7 +148,8 @@ export default function HeroMobile() {
                 alt=""
                 width={1672}
                 height={941}
-                sizes="390px"
+                sizes="100vw"
+                quality={60}
                 loading="eager"
                 fetchPriority="high"
                 className="absolute bottom-[-1px] left-0 h-auto w-full max-w-none"
