@@ -69,7 +69,7 @@ export default function HeroMobile() {
     /* ==========================================================
        MOBILE FRAME — one 390px column, page background shows beside it on tablets
        ========================================================== */
-    <div className="relative mx-auto w-full max-w-[390px] overflow-hidden bg-[#060606] pb-[36px] pt-[16px] font-sans xl:hidden">
+    <div className="mobile-col relative overflow-hidden bg-[#060606] pb-[36px] pt-[16px] font-sans xl:hidden">
       {/* ======================================================
           BACKGROUND STACK (bottom → top), positioned as in Figma.
           Left offsets/widths are % of the frame so it scales with the column;

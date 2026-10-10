@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import Script from "next/script";
+import MobileZoom from "../components/MobileZoom";
 import "./globals.css";
 
 const GTM_ID = "GTM-5SBMM86H";
@@ -36,6 +37,7 @@ export default function RootLayout({
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
+        <MobileZoom />
         <div className="relative">{children}</div>
         {/* Google Tag Manager: the dataLayer is created straight away (so early events are
             queued), but gtm.js itself is only requested GTM_DELAY_MS after the page loads,

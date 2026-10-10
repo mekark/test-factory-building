@@ -35,7 +35,7 @@ export default function ProjectsGalleryMobile() {
        MOBILE FRAME — full-width #f9f6f7 with one 390px column
        ========================================================== */
     <div className="bg-[#f9f6f7] font-sans xl:hidden">
-      <div className="mx-auto flex w-full max-w-[390px] flex-col items-start gap-6 px-5 py-8">
+      <div className="mobile-col flex flex-col items-start gap-6 px-5 py-8">
         {/* ---------- Heading block ---------- */}
         <div className="flex w-full flex-col items-start gap-4 [word-break:break-word]">
           <div className="flex w-full flex-col items-start gap-[10px] font-bold">

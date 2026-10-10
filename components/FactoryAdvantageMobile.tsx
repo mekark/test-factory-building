@@ -22,9 +22,9 @@ export default function FactoryAdvantageMobile() {
 
   return (
     /* ==========================================================
-       MOBILE FRAME — one 390px column
+       MOBILE FRAME — one 390px column (zoomed to fill wider phones, see .mobile-col)
        ========================================================== */
-    <div className="mx-auto w-full max-w-[390px] bg-[#f9f6f7] font-sans xl:hidden">
+    <div className="mobile-col bg-[#f9f6f7] font-sans xl:hidden">
       {/* ---------- Photo banner: factory billboard with the person cutout ---------- */}
       <div className="relative h-[249px] w-full overflow-hidden">
         <Image
@@ -39,7 +39,7 @@ export default function FactoryAdvantageMobile() {
       </div>
 
       {/* ---------- Copy panel: white fading into brand red ---------- */}
-      <div className="flex flex-col items-center gap-[10px] bg-[linear-gradient(180deg,#fffdfd_6.034%,#e60f1a_47.028%)] px-5 pb-[30px] pt-5">
+      <div className="bg-[linear-gradient(180deg,#fffdfd_6.034%,#e60f1a_47.028%)] flex flex-col items-center gap-[10px] px-5 pb-[30px] pt-5">
         {/* Heading + sub-heading */}
         <div className="flex w-full flex-col items-start gap-3">
           {/* Figma trims the heading's text box to cap height (about 7px off top and bottom) */}

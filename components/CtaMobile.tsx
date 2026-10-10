@@ -48,7 +48,7 @@ export default function CtaMobile() {
        MOBILE FRAME — full-width #090909 with one 390px column
        ========================================================== */
     <div className="bg-[#090909] font-sans xl:hidden">
-      <div className="relative mx-auto w-full max-w-[390px] overflow-hidden px-5 py-8">
+      <div className="mobile-col relative overflow-hidden px-5 py-8">
         {/* ====================================================
             BACKGROUND — faint mirrored pipework, fade to black, red glow
             ==================================================== */}

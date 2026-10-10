@@ -47,7 +47,7 @@ export default function MarketAdvantageMobile() {
        MOBILE FRAME — full-width #0a0a0a with one 390px column
        ========================================================== */
     <div className="bg-[#0a0a0a] font-sans xl:hidden">
-      <div className="mx-auto flex w-full max-w-[390px] flex-col items-start gap-[6px] p-5 [word-break:break-word]">
+      <div className="mobile-col flex flex-col items-start gap-[6px] p-5 [word-break:break-word]">
         {/* ---------- Heading + sub-heading ---------- */}
         <div className="flex w-[342px] max-w-full flex-col items-start gap-3">
           <h2 className="w-full text-[28px] font-extrabold leading-[34px] text-white">

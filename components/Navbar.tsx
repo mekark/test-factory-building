@@ -1,18 +1,23 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useCanvasZoom } from "./useCanvasZoom";
 
 /* ============================================================
    NAV BAR (Figma "Hero" nav, 1920 × 80)
    Logo on the left, red "Get Free Quote" button on the right.
    Mobile: solid black bar, sticky in the page flow.
    Desktop (1280px+): fixed over the hero and transparent at the top of the
-   page, then turns solid black once the page is scrolled.
+   page, then turns solid black once the page is scrolled. The bar is zoomed
+   with the same canvas zoom as the Figma sections (1920px frame scaled to the
+   viewport), so it stays the same proportion as the hero on smaller laptops.
    ============================================================ */
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
+  useCanvasZoom(navRef);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
@@ -29,7 +34,10 @@ export default function Navbar() {
           : "xl:bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex w-full max-w-[1920px] items-center justify-between px-5 py-3 sm:px-8 xl:px-[80px] xl:py-[17px]">
+      <nav
+        ref={navRef}
+        className="canvas-zoom mx-auto flex w-full items-center justify-between px-5 py-3 sm:px-8 xl:w-[1920px] xl:px-[80px] xl:py-[17px]"
+      >
         {/* Logo: 132 × 46 on desktop */}
         <a href="#" aria-label="Mekark home" className="block">
           <Image

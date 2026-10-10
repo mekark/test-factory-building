@@ -59,3 +59,22 @@ body {
     animation: none;
   }
 }
+
+/* ============================================================
+   MOBILE COLUMN (every *Mobile component, below 1280px)
+   The mobile Figma frames are 390px wide. On phones wider than that the
+   column is zoomed to fill the viewport (viewport / 390, capped at 1.5 by
+   MobileZoom) instead of leaving empty bars on either side. The fallbacks
+   are common phone widths / 390 for the first paint.
+   ============================================================ */
+.mobile-col {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 390px;
+}
+@media (min-width: 391px) and (max-width: 1279px) {
+  .mobile-col { width: 390px; zoom: var(--mobile-zoom, 1.0974); }
+}
+@media (min-width: 414px) and (max-width: 1279px) { .mobile-col { zoom: var(--mobile-zoom, 1.0615); } }
+@media (min-width: 430px) and (max-width: 1279px) { .mobile-col { zoom: var(--mobile-zoom, 1.1026); } }
+@media (min-width: 600px) and (max-width: 1279px) { .mobile-col { zoom: var(--mobile-zoom, 1.5); } }
