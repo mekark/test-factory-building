@@ -14,9 +14,9 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Mekark Structures Pvt. Ltd.",
+  title: "Industrial Factory Construction & Expansion Company",
   description:
-    "Mekark delivers industrial construction solutions for factories, plant infrastructure, utility systems, and manufacturing facilities.",
+    "Leading Industrial Factory Construction & Expansion Company – Turnkey EPC expertise in In House PEB Manufacturing, Civil, PEB, MEP and Seamless Execution servicing the needs of Industrial factory Building Contractor & Industrial Factory Building Expansion Company.",
 };
 
 export default function RootLayout({
