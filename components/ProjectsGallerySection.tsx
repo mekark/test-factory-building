@@ -148,18 +148,6 @@ export default function ProjectsGallerySection() {
               );
             })}
           </div>
-
-          {/* ======================================================
-              VIEW ALL — red button, centred under the grid
-              ====================================================== */}
-          <div className="relative mt-8 flex justify-center xl:absolute xl:left-[calc(50%+0.5px)] xl:top-[1302.3px] xl:mt-0 xl:-translate-x-1/2">
-            <a
-              href="#projects"
-              className="flex items-center justify-center rounded-[8.809px] bg-[#c4161c] px-[32px] py-[16px] text-[20px] font-extrabold leading-[normal] text-[#f5f5f5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] transition-colors hover:bg-[#ad1318] xl:px-[50px] xl:py-[20px] xl:text-[24px]"
-            >
-              View All →
-            </a>
-          </div>
         </div>
       </div>
     </section>

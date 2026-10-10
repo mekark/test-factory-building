@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { Inter } from "next/font/google";
 import { PHONE_NUMBER, WHATSAPP_HREF } from "../lib/contact";
 import {
   EnquiryValues,
@@ -9,8 +10,10 @@ import {
   useEnquiryForm,
 } from "./useEnquiryForm";
 
+const inter = Inter({ subsets: ["latin"], weight: ["500"] });
+
 /* ============================================================
-   MOBILE HERO (Figma "Section", 390 × 1690)
+   MOBILE HERO (Figma "Section", node 8701:2192)
    Shown below 1280px only; the desktop hero is untouched.
    ============================================================ */
 
@@ -19,21 +22,21 @@ import {
    ============================================================ */
 
 const FEATURES = [
-  "Complete Turnkey Factory Construction – From Design to Handover",
-  "Factory Construction Delivered in as Fast as 150 Days*",
-  "Advanced In-House Manufacturing for Superior Quality",
-  "Industrial EPC Contractor with ISO-Certified Standards",
-  "Dedicated Project Management for On-Time Delivery",
-  "Trusted by 500+ Industrial & Manufacturing Clients",
+  "Automotive, EV, Electronics, Electrical & Semiconductor.",
+  "Renewable Energy, Engineering,Electrical Vehicle.",
+  "Cold Storage & Clean Rooms,  Machinery & Heavy Manufacturing.",
+  "Textile, Pharmaceutical, Chemical & Life Sciences.",
+  "Metals, Steel, Building Materials, Packaging & Plastics, Logistics.",
+  "Apparel, Leather, Food Processing, Beverage, FMCG.",
 ] as const;
 
-// The four client logos shown on mobile (same files as the desktop strip).
+// The four client logos and their crops from the mobile Figma node.
 // size = logo box inside the 64×40 tile, as in Figma.
 const LOGOS = [
-  { name: "VWU", src: "/hero/logos/vwu.webp", w: 39, h: 39 },
-  { name: "Voltas", src: "/hero/logos/voltas.webp", w: 50, h: 50 },
-  { name: "TVS", src: "/hero/logos/tvs.webp", w: 52, h: 53 },
-  { name: "Tata Electronics", src: "/hero/logos/tata.webp", w: 54, h: 54 },
+  { name: "L&T", src: "/hero/mobile/design-lt.png", w: 64, h: 64 * 1132 / 2084 },
+  { name: "CAT", src: "/hero/mobile/design-cat.png", w: 48, h: 48 },
+  { name: "TVS", src: "/hero/mobile/design-tvs.png", w: 52, h: 53 },
+  { name: "Tata", src: "/hero/mobile/design-tata.png", w: 32, h: 32 },
 ] as const;
 
 // Suffix colours differ slightly per stat in the design.
@@ -69,7 +72,7 @@ export default function HeroMobile() {
     /* ==========================================================
        MOBILE FRAME — one 390px column, page background shows beside it on tablets
        ========================================================== */
-    <div className="mobile-col relative overflow-hidden bg-[#060606] pb-[36px] pt-[16px] font-sans xl:hidden">
+    <div className="mobile-col relative min-h-[1732px] overflow-hidden bg-[#060606] pt-[44px] font-sans xl:hidden">
       {/* ======================================================
           BACKGROUND STACK (bottom → top), positioned as in Figma.
           Left offsets/widths are % of the frame so it scales with the column;
@@ -78,42 +81,42 @@ export default function HeroMobile() {
       <div aria-hidden className="pointer-events-none absolute inset-0">
         {/* 1. Warehouse at sunset (only a sliver shows at the very top) */}
         <Image
-          src="/hero/mobile/layer1.webp"
+          src="/hero/mobile/design-layer1.png"
           alt=""
           width={941}
           height={1672}
-          className="absolute left-[-0.77%] top-[-118px] h-auto w-[100.77%] max-w-none"
+          className="absolute left-[-0.82%] top-[-76.25px] h-[698.67px] w-[100.82%] max-w-none"
         />
         {/* 2. Steel frame at dusk, tall photo */}
         <Image
-          src="/hero/mobile/image22.webp"
+          src="/hero/mobile/design-image22.png"
           alt=""
           width={941}
           height={1672}
-          className="absolute left-[-70.51%] top-[15px] h-auto w-[241.28%] max-w-none"
+          className="absolute left-[-70.46%] top-[15.44px] h-[1671.95px] w-[241.28%] max-w-none"
         />
         {/* 3. Steel frame, second crop behind the form */}
         <Image
-          src="/hero/mobile/image23.webp"
+          src="/hero/mobile/design-image23.png"
           alt=""
           width={714}
           height={2202}
-          className="absolute left-[-15.13%] top-[419px] h-auto w-[129.49%] max-w-none"
+          className="absolute left-[-15.13%] top-[419px] h-[1556px] w-[129.49%] max-w-none object-cover"
         />
         {/* 4. 40% black wash from below the hero image */}
         <div className="absolute inset-x-0 top-[284px] h-[1691px] bg-[rgba(15,15,15,0.4)]" />
         {/* 5. Dark vignette image + radial shade */}
         <Image
-          src="/hero/mobile/overlay-a.webp"
+          src="/hero/mobile/design-overlay-a.png"
           alt=""
           width={941}
           height={1672}
-          className="absolute left-[-91.28%] top-[-8.5px] h-auto w-[282.97%] max-w-none"
+          className="absolute left-[-91.23%] top-[-8.54px] h-[1962px] w-[282.86%] max-w-none"
         />
         <img
-          src="/hero/mobile/overlay-b.svg"
+          src="/hero/mobile/design-overlay-b.svg"
           alt=""
-          className="absolute left-[-80.77%] top-0 block h-[1733px] w-[260.77%] max-w-none"
+          className="absolute left-[-315px] top-0 block max-w-none"
         />
       </div>
 
@@ -123,17 +126,17 @@ export default function HeroMobile() {
       <div className="relative z-10 flex flex-col gap-[13px] px-5">
         {/* ---------- Badge, hero photo with headline, intro paragraph ---------- */}
         <div className="flex flex-col gap-[12px]">
-          <div className="-mx-5 flex flex-col gap-[19px]">
+          <div className="-mx-5 flex flex-col gap-[23px]">
             {/* Badge */}
-            <p className="ml-5 flex h-[28px] w-fit items-center gap-2 rounded-full border border-solid border-white/20 px-3 text-[10px] font-medium leading-[16px] text-white">
+            <p className={`${inter.className} ml-5 flex h-[24px] max-w-[calc(100%-40px)] w-fit items-center gap-2 rounded-full border border-solid border-white/20 px-3 text-[10px] font-medium leading-[normal] text-white`}>
               <span aria-hidden className="size-2 shrink-0 rounded-full bg-[#e40015]" />
-              Indias Trusted Factory &amp; EPC Partner
+              Industrial Factory Construction &amp; Expansion Company
             </p>
 
             {/* Hero photo (full width) with the two-line headline over its lower half */}
             <div className="relative h-[219px] overflow-hidden bg-[#060606]">
               <Image
-                src="/hero/hero-bg.webp"
+                src="/hero/mobile/design-banner.png"
                 alt=""
                 width={1672}
                 height={941}
@@ -144,44 +147,46 @@ export default function HeroMobile() {
               />
               <div className="absolute bottom-px left-0 h-[108px] w-full bg-[linear-gradient(182.77deg,rgba(30,30,30,0)_1.0095%,#1e1e1e_99.312%)]" />
               <h1>
-                <span className="absolute left-5 top-[166px] block w-[350px] -translate-y-1/2 text-[22px] font-semibold leading-[24px] text-white">
-                  Turnkey Factory Construction
+                <span className="absolute left-5 top-[166px] block w-[calc(100%-40px)] -translate-y-1/2 text-[22px] font-bold leading-[normal] text-white">
+                  Build Factory. Design to Delivery
                 </span>
-                <span className="absolute left-[-1px] top-[185px] block bg-[#c4161c] py-px pl-5 pr-2 text-[16px] font-semibold leading-[normal] text-white">
-                  Industrial EPC Solutions
+                <span className="absolute left-[-1px] top-[185px] block bg-[#c4161c] py-px pl-5 pr-2 text-[16px] font-bold leading-[normal] text-white">
+                  Construction &amp; Expansion
                 </span>
               </h1>
             </div>
           </div>
 
-          <p className="w-full whitespace-pre-wrap text-[14px] font-normal leading-[19px] text-[#f3f3f3]">
-            Factory Construction Company for Manufacturing
-            <br />
-            Plants, Industrial Buildings &amp; Factory
-            <br />
-            {`Sheds  & Industrial Plant Builders`}
-          </p>
+          <div className="w-full text-[14px] font-normal leading-[normal] text-[#a9a9a9]">
+            <p><span className="font-bold text-[#ed1d23]">MEKARK</span> - Builds Every Structure You Want.</p>
+            <p>All kinds of Industrial, Factory Construction &amp; Expansion projects – <span className="font-bold text-white">ALL INDIA</span></p>
+          </div>
         </div>
 
         {/* ---------- Feature list (red chevrons) ---------- */}
+        <div className="flex flex-col gap-[6px]">
+          <p className="text-[14px] font-bold leading-[normal] text-[#f3f3f3]">
+            In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.
+          </p>
         <ul className="flex flex-col gap-[6px]">
           {FEATURES.map((feature, index) => (
             <li key={feature} className="flex items-center gap-2 rounded-[12px] px-3">
               <img
-                src="/hero/mobile/chevron.svg"
+                src="/hero/mobile/design-chevron.svg"
                 alt=""
                 width={15}
                 height={15}
-                className="block size-[15px] shrink-0"
+                className="block shrink-0"
               />
               <span
-                className={`min-w-0 flex-1 text-[12px] font-normal text-white/70 ${index === 0 ? "leading-[16px]" : "leading-[20px]"}`}
+                className={`min-w-0 whitespace-pre-wrap text-[12px] font-normal leading-[20px] text-[#b5b5b5] ${index === 0 ? "w-[315px] shrink-0 max-[389px]:flex-1" : index === 4 ? "w-[282px] max-[389px]:flex-1" : "flex-1"}`}
               >
                 {feature}
               </span>
             </li>
           ))}
         </ul>
+        </div>
 
         {/* ---------- "Trusted Across India" logo card ---------- */}
         <div className="flex flex-col gap-4 rounded-[10px] bg-[linear-gradient(175.66deg,rgb(8,9,10)_1.2889%,rgb(101,69,40)_91.175%)] px-4 py-6">
@@ -196,14 +201,18 @@ export default function HeroMobile() {
                 key={logo.name}
                 className="flex h-[40px] min-w-0 max-w-[64px] flex-1 basis-0 items-center justify-center overflow-hidden rounded-[6px] bg-[#f9f6f7]"
               >
-                <img
+                {logo.name === "Tata" ? (
+                  <span className="relative size-8 shrink-0 overflow-hidden">
+                    <img src={logo.src} alt={logo.name} className="absolute left-[-100%] top-[-69.9%] h-[301.97%] w-[300%] max-w-none" />
+                  </span>
+                ) : <img
                   src={logo.src}
                   alt={logo.name}
                   width={logo.w}
                   height={logo.h}
                   className="block shrink-0 object-cover"
                   style={{ width: logo.w, height: logo.h }}
-                />
+                />}
               </div>
             ))}
           </div>
@@ -216,7 +225,7 @@ export default function HeroMobile() {
               key={stat.label}
               className="flex h-[75px] flex-col justify-center gap-1 whitespace-nowrap rounded-[10px] border border-solid border-white/[0.08] bg-[#1a1a1a] px-5"
             >
-              <p className="text-[24px] font-extrabold leading-[normal] text-white">
+              <p className="text-[24px] max-[379px]:text-[20px] font-extrabold leading-[normal] text-white">
                 {stat.value}
                 <span style={{ color: stat.suffixColor }}>{stat.suffix}</span>
               </p>
@@ -278,7 +287,7 @@ export default function HeroMobile() {
                   name="phoneNumber"
                   type="tel"
                   inputMode="tel"
-                  maxLength={16}
+                  maxLength={10}
                   aria-label="Mobile number"
                   placeholder="Mobile Number*"
                   value={values.phoneNumber}
@@ -323,11 +332,11 @@ export default function HeroMobile() {
                     ))}
                   </select>
                   <img
-                    src="/hero/mobile/select-arrow.svg"
+                    src="/hero/mobile/design-select-arrow.svg"
                     alt=""
                     width={15}
                     height={15}
-                    className="pointer-events-none absolute right-[22px] top-1/2 block size-[15px] -translate-y-1/2 rotate-90"
+                    className="pointer-events-none absolute right-[22px] top-1/2 block -translate-y-1/2 rotate-90"
                   />
                 </div>
                 {errors.industryType ? <p className={ERROR_CLASS}>{errors.industryType}</p> : null}
@@ -353,11 +362,11 @@ export default function HeroMobile() {
                     ))}
                   </select>
                   <img
-                    src="/hero/mobile/select-arrow.svg"
+                    src="/hero/mobile/design-select-arrow.svg"
                     alt=""
                     width={15}
                     height={15}
-                    className="pointer-events-none absolute right-[22px] top-1/2 block size-[15px] -translate-y-1/2 rotate-90"
+                    className="pointer-events-none absolute right-[22px] top-1/2 block -translate-y-1/2 rotate-90"
                   />
                 </div>
                 {errors.sqft ? <p className={ERROR_CLASS}>{errors.sqft}</p> : null}
@@ -383,9 +392,9 @@ export default function HeroMobile() {
                 disabled={isSubmitting}
                 className="flex w-full items-center justify-center rounded-[10px] bg-[#c4161c] px-6 py-[13px] text-center text-[14px] font-bold leading-[19px] text-[#f5f5f5] drop-shadow-[0px_8.81px_17.62px_rgba(196,22,28,0.3)] transition-colors hover:bg-[#ad1318] disabled:cursor-not-allowed disabled:opacity-80"
               >
-                {isSubmitting ? "Submitting..." : "Get My Free Quote →"}
+                {isSubmitting ? "Submitting..." : "Get a Free Quote →"}
               </button>
-              <p className="w-full text-center text-[12px] font-medium leading-[16px] text-[#8a8a8a]">
+              <p className="w-full text-center text-[12px] font-medium leading-[normal] text-[#c1c1c1]">
                 100% Transparent Consultation with single point project support
               </p>
               {submitError ? (
@@ -397,7 +406,7 @@ export default function HeroMobile() {
           </form>
 
           {/* WhatsApp + Call Now pills */}
-          <div className="ml-4 flex w-[311px] max-w-full items-start justify-center gap-[14px]">
+          <div className="flex w-[311px] max-w-full items-start justify-center gap-[14px]">
             <a
               href={WHATSAPP_HREF}
               target="_blank"
@@ -408,12 +417,12 @@ export default function HeroMobile() {
               <span className="relative block size-[18px] shrink-0 overflow-hidden">
                 <span
                   className="absolute inset-y-0 left-0 right-[0.48%] [mask-repeat:no-repeat] [mask-size:18px_18px]"
-                  style={{ maskImage: "url(/hero/icons/whatsapp-mask.svg)" }}
+                  style={{ maskImage: "url(/hero/mobile/design-whatsapp-mask.svg)" }}
                 >
                   <img
-                    src="/hero/icons/whatsapp.svg"
+                    src="/hero/mobile/design-whatsapp.svg"
                     alt=""
-                    className="absolute inset-0 block size-full max-w-none"
+                    className="absolute inset-0 block max-w-none"
                   />
                 </span>
               </span>
@@ -424,11 +433,11 @@ export default function HeroMobile() {
             >
               Call Now
               <img
-                src="/hero/icons/phone-call.svg"
+                src="/hero/mobile/design-phone-call.svg"
                 alt=""
                 width={18}
                 height={18}
-                className="block size-[18px] shrink-0"
+                className="block shrink-0"
               />
             </a>
           </div>

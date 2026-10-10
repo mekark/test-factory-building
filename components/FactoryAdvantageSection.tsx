@@ -1,21 +1,45 @@
 "use client";
 
 import Image from "next/image";
-import { CSSProperties, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import FactoryAdvantageMobile from "./FactoryAdvantageMobile";
 import { useCanvasZoom } from "./useCanvasZoom";
 
 /* ============================================================
-   CONTENT DATA
-   `indent` is the staggered left padding of each row in Figma (px, desktop).
+   CONTENT DATA — six accordion rows (Figma "Frame 271")
    ============================================================ */
 
 const POINTS = [
-  { label: "3000+ MT High-Capacity Fabrication", width: 700 },
-  { label: "Fully Automated Steel Production", width: 672 },
-  { label: "Advanced CNC-Based Precision Engineering", width: 645 },
-  { label: "ISO-Certified Quality Systems", width: 645 },
-  { label: "30–40% Faster Project Delivery", width: 672 },
+  {
+    label: "Turnkey Factory Construction",
+    description:
+      "We take single-point accountability from design to handover. As a Turnkey Factory Construction Company and factory shed construction company, we ensure that our engineering, manufacturing, procurement and erection are done under one umbrella, which ensures that your project stays on track and within budget.",
+  },
+  {
+    label: "In-House Structural Engineers",
+    description:
+      "As an industrial factory building contractor, we use BIM-based structural analysis to design every structure accurately before work begins. This makes us a dependable factory building contractor for large plants, with fewer on-site design changes.",
+  },
+  {
+    label: "Foundations & Structures Designed for Your Loads",
+    description:
+      "We customise the design for your machinery, overhead cranes, mezzanines and floor loads. As a factory construction contractor, we size footings, pedestals and crane gantry supports for safe load transfer and vibration control.",
+  },
+  {
+    label: "Factory Expansion Without Disrupting Production",
+    description:
+      "As your industrial construction contractor, Mekark connects design, civil works, structural steel, MEP and project execution through one EPC delivery model.",
+  },
+  {
+    label: "Fully Automated Steel Production",
+    description:
+      "Factory extensions and manufacturing plant expansion can be considered during the original engineering, reducing what needs to be reworked when the facility grows.",
+  },
+  {
+    label: "Safe Construction & Pre-Handover Inspection",
+    description:
+      "ISO 9001:2015 and CE-certified processes support fabrication quality with documentation your project and compliance teams can verify.",
+  },
 ] as const;
 
 /* ============================================================
@@ -24,7 +48,8 @@ const POINTS = [
 
 export default function FactoryAdvantageSection() {
   const canvasRef = useRef<HTMLDivElement>(null);
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  // One row open at a time; all rows start closed.
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
   useCanvasZoom(canvasRef);
 
   return (
@@ -35,116 +60,124 @@ export default function FactoryAdvantageSection() {
       {/* ---------- Mobile / tablet layout (below 1280px): separate component, see FactoryAdvantageMobile.tsx ---------- */}
       <FactoryAdvantageMobile />
 
-      {/* ---------- Desktop layout (1280px and up): unchanged ---------- */}
+      {/* ---------- Desktop layout (1280px and up) ---------- */}
       <div className="hidden xl:block">
         {/* ---------- Design canvas (zoomed to the viewport on desktop) ---------- */}
         <div
           ref={canvasRef}
-          className="canvas-zoom relative mx-auto flex w-full flex-col xl:block xl:h-[865.333px] xl:w-[1920px]"
+          className="canvas-zoom relative mx-auto h-[865.333px] w-[1920px]"
         >
           {/* ======================================================
-              PHOTO LAYERS — factory background, red panel, person cutout.
-              Mobile: a banner on top. Desktop: absolutely positioned layers.
+              PHOTO LAYERS — factory photo, red L-shaped panel + gradient
               ====================================================== */}
-          <div className="relative h-[240px] w-full overflow-hidden sm:h-[380px] xl:absolute xl:inset-0 xl:h-auto xl:overflow-visible">
-            {/* Layer 1: full-bleed factory photo with the "we build factories" billboard */}
+          {/* Layer 1: full-bleed factory photo with the "we build factories" billboard */}
+          <div className="absolute left-0 top-[-0.33px] h-[865.333px] w-[1920px] overflow-hidden">
             <Image
+              src="/advantage/factory-bg.webp"
+              alt="Mekark factory under construction with a billboard reading: we build factories, you build future"
+              width={1000}
+              height={640}
+              sizes="1920px"
+              className="pointer-events-none absolute left-[-0.01%] top-[-38.54%] h-[142%] w-full max-w-none"
+            />
+          </div>
+
+          {/* Layers 2–4: red L-shaped panel + light-to-red gradient on its top edge */}
+          <div className="absolute left-[1004px] top-[-0.33px] h-[568px] w-[916px] bg-[#e60f1a]" />
+          <div className="absolute left-[1047px] top-[514px] h-[224px] w-[873px] bg-[#e60f1a]" />
+          <Image
+            src="/advantage/panel-overlay.webp"
+            alt=""
+            width={916}
+            height={399}
+            sizes="916px"
+            className="pointer-events-none absolute left-[1004px] top-[-3px] h-[398.667px] w-[916px] max-w-none object-cover"
+          />
+
+          {/* ======================================================
+              COPY — heading + sub-heading
+              ====================================================== */}
+          <div className="absolute left-[1099px] top-[40.33px] flex w-[782.667px] flex-col items-start justify-center gap-[25px] py-[6px]">
+            <h2 className="w-full text-[53.333px] font-extrabold leading-[60px] tracking-[-1.3333px] text-[#030303]">
+              Why Top Industries
+              <br />
+              Choose Mekark
+            </h2>
+            <p className="whitespace-nowrap text-[21.333px] font-normal leading-[28px] text-[#424242]">
+              India&apos;s Leading Industrial Factory Construction &amp; Expansion
+              Company
+            </p>
+          </div>
+
+          {/* ======================================================
+              ACCORDION — six right-aligned rows, scrolls when a row is open
+              ====================================================== */}
+          <div className="absolute left-[1099px] top-[216px] h-[523px] w-[750px]">
+            <ul className="flex h-full w-full flex-col items-end gap-[10px] overflow-y-auto overflow-x-clip [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {POINTS.map((point, i) => {
+                const isOpen = openIndex === i;
+                const isLast = i === POINTS.length - 1;
+                return (
+                  <li
+                    key={point.label}
+                    className={`w-[718px] shrink-0 text-white ${isLast ? "" : "border-b-[1.333px] border-solid border-[#e58282]"}`}
+                  >
+                    <button
+                      type="button"
+                      aria-expanded={isOpen}
+                      onClick={() => setOpenIndex(isOpen ? null : i)}
+                      className="flex w-full cursor-pointer items-start pb-[13.333px] pr-[19px] pt-[12px] text-left"
+                    >
+                      <span className="w-[37px] shrink-0 text-[24px] font-bold leading-[29.867px]">
+                        {i + 1}.
+                      </span>
+                      <span className="block w-[492px] shrink-0 text-[24px] font-bold leading-[29.867px]">
+                        {point.label}
+                      </span>
+                      <img
+                        src="/advantage/chevron.svg"
+                        alt=""
+                        width={30}
+                        height={30}
+                        className={`ml-auto block size-[30px] shrink-0 transition-transform duration-300 ${isOpen ? "-rotate-90" : "rotate-90"}`}
+                      />
+                    </button>
+                    <div
+                      className={`grid transition-[grid-template-rows] duration-300 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
+                    >
+                      <div className="overflow-hidden">
+                        <p className="w-[632px] pb-[14px] pl-[37px] text-[17px] font-medium leading-normal text-white">
+                          {point.description}
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+
+            {/* Soft fade at the bottom of the scroll area (Figma "Rectangle 24") */}
+            <Image
+              src="/advantage/list-fade.webp"
+              alt=""
+              width={750}
+              height={73}
+              sizes="750px"
+              className="pointer-events-none absolute bottom-0 left-0 h-[73px] w-[750px] max-w-none object-cover"
+            />
+          </div>
+
+          {/* Layer 6: person cutout, on top of every other layer */}
+          <div className="pointer-events-none absolute left-[816px] top-0 h-[865px] w-[328px] overflow-hidden">
+            <Image
+              src="/advantage/person-2.webp"
+              alt=""
               width={1440}
               height={649}
               sizes="1920px"
-              src="/advantage/background.webp"
-              alt="Mekark factory under construction with a billboard reading: we build factories, you build future"
-              className="pointer-events-none absolute inset-0 h-full w-full max-w-none object-cover xl:left-0 xl:top-[-0.33px] xl:h-[865.333px] xl:w-[1920px]"
+              className="absolute left-[-248.78%] top-[-0.04%] h-[100.04%] w-[585.37%] max-w-none"
             />
-
-            {/* Layers 2–4 (desktop only): red L-shaped panel + dark gradient overlay */}
-            <div className="absolute left-[1004px] top-0 hidden h-[701.333px] w-[916px] bg-[#e60f1a] xl:block" />
-            <div className="absolute left-[964px] top-[554.67px] hidden h-[183px] w-[956px] bg-[#e60f1a] xl:block" />
-            <Image
-              width={916}
-              height={399}
-              sizes="916px"
-              src="/advantage/overlay-new.webp"
-              alt=""
-              className="pointer-events-none absolute left-[1004px] top-[-2.67px] hidden h-[398.667px] w-[916px] max-w-none object-cover xl:block"
-            />
-
-            {/* Layer 6: person cutout. Sits above the red panel, so it is
-                rendered after the text on desktop (see the end of this block). */}
           </div>
-
-          {/* ======================================================
-              COPY — heading, sub-heading and the five check points
-              ====================================================== */}
-          <div className="relative z-10 bg-[#e60f1a] bg-[linear-gradient(180deg,#2a0306_0%,#e60f1a_55%)] px-5 pb-12 pt-10 sm:px-8 sm:pt-12 xl:static xl:bg-none xl:p-0">
-            {/* Heading + sub-heading stacked (22px gap) so a wrapped heading never overlaps the sub-heading */}
-            <div className="xl:absolute xl:left-[1089.33px] xl:top-[49.33px] xl:flex xl:w-[783px] xl:flex-col xl:gap-[22px]">
-              {/* Heading (Bold 66px, #030303) */}
-              <h2 className="text-[30px] font-extrabold leading-[1.15] tracking-[-0.03em] text-white sm:text-[40px] xl:text-[66px] xl:font-bold xl:leading-[69.333px] xl:tracking-normal xl:text-[#030303]">
-                Why Industries Choose Mekark for Their Factory Buildings
-              </h2>
-
-              {/* Sub-heading (Regular 20px, #424242) */}
-              <p className="mt-4 text-[16px] font-normal leading-[1.5] text-[#ffd0d3] sm:text-[18px] xl:mt-0 xl:text-[20px] xl:leading-normal xl:text-[#424242]">
-                Leading the industrial construction sector with unmatched capacity
-                and precision.
-              </p>
-            </div>
-
-            {/* Points list: right-aligned rows with staggered widths, bottom dividers and chevrons */}
-            <ul className="mt-8 flex flex-col gap-[14px] xl:absolute xl:left-[1071px] xl:top-[322px] xl:mt-0 xl:w-[750px] xl:items-end xl:gap-[10px]">
-              {POINTS.map((point, i) => (
-                <li
-                  key={point.label}
-                  className="border-b-[1.333px] border-[#e58282] text-white xl:w-[var(--row-w)]"
-                  style={{ "--row-w": `${point.width}px` } as CSSProperties}
-                >
-                  <button
-                    type="button"
-                    aria-expanded={openIndex === i}
-                    onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                    className="flex w-full cursor-pointer items-center gap-[10px] text-left xl:pb-[13.333px] xl:pt-[12px]"
-                  >
-                    <span className="text-[18px] font-bold leading-[26px] sm:text-[22px] xl:w-[27px] xl:shrink-0 xl:text-[24px] xl:leading-[29.867px]">
-                      {i + 1}.
-                    </span>
-                    <span className="block flex-1 text-[18px] font-bold leading-[26px] sm:text-[22px] sm:leading-[30px] xl:text-[24px] xl:leading-[29.867px]">
-                      {point.label}
-                    </span>
-                    <img
-                      src="/advantage/chevron.svg"
-                      alt=""
-                      width={30}
-                      height={30}
-                      className={`block size-[30px] shrink-0 transition-transform duration-300 ${openIndex === i ? "-rotate-90" : "rotate-90"}`}
-                    />
-                  </button>
-                  <div
-                    className={`grid transition-[grid-template-rows] duration-300 ${openIndex === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="pb-[14px] pl-[37px] pr-[40px] text-[17px] font-medium leading-normal text-white">
-                        Dummy text: Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.
-                      </p>
-                    </div>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Layer 6: person cutout, on top of every other layer (desktop only) */}
-          <Image
-            width={1440}
-            height={649}
-            sizes="1920px"
-            src="/advantage/person.webp"
-            alt=""
-            className="pointer-events-none absolute left-0 top-[-0.33px] hidden h-[865.333px] w-[1920px] max-w-none xl:block"
-            style={{ clipPath: "inset(0 776px 0 0)" }}
-          />
         </div>
       </div>
     </section>

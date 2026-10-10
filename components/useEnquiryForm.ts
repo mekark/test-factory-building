@@ -9,18 +9,15 @@ const FORM_ENDPOINT = "/api/enquiry-form";
 const THANK_YOU_URL = "/thank-you";
 
 export const INDUSTRY_TYPES = [
-  "Steel & Metal Industries",
-  "Electronics Manufacturing",
-  "Chemical & Process",
-  "Power Plants",
-  "Automobile Industry",
-  "Pharmaceutical Facilities",
-  "FMCG & Consumer Goods",
-  "Textile & Processing Units",
-  "Cold Storage Facilities",
-  "Windmill Infrastructure",
-  "Cleanroom Environments",
-  "Industrial HVAC Systems",
+"Automotive, EV & Auto Components",
+  "Engineering, Machinery & Heavy Manufacturing",
+  "Electronics, Electrical & Semiconductor",
+  "Food, Beverage & FMCG",
+  "Pharmaceutical, Chemical & Life Sciences",
+  "Textile, Apparel & Leather",
+  "Metals, Steel & Building Materials",
+  "Plastics, Packaging & Consumer Products",
+  "Renewable Energy & Clean-Tech Manufacturing",
 ];
 
 export const SQFT_OPTIONS = [
@@ -52,16 +49,41 @@ const INITIAL_VALUES: EnquiryValues = {
   requirements: "",
 };
 
+// Input filters: strip characters that are not allowed as the user types/pastes.
+const sanitize = (name: string, value: string) => {
+  switch (name) {
+    case "name":
+    case "projectLocation":
+      // Letters (any language), spaces and . , ' - only; no digits.
+      return value.replace(/[^\p{L}\p{M}\s.,'-]/gu, "");
+    case "phoneNumber":
+      // Digits only, at most 10.
+      return value.replace(/\D/g, "").slice(0, 10);
+    default:
+      return value;
+  }
+};
+
 const validate = (values: EnquiryValues): EnquiryErrors => {
   const errors: EnquiryErrors = {};
 
-  if (!values.name.trim()) errors.name = "Name is required";
+  if (!values.name.trim()) {
+    errors.name = "Name is required";
+  } else if (!/^[\p{L}\p{M}\s.'-]+$/u.test(values.name.trim())) {
+    errors.name = "Name can contain letters only";
+  }
 
-  const phoneDigits = values.phoneNumber.replace(/\D/g, "");
-  if (!phoneDigits) {
+  if (
+    values.projectLocation.trim() &&
+    !/^[\p{L}\p{M}\s.,'-]+$/u.test(values.projectLocation.trim())
+  ) {
+    errors.projectLocation = "Location can contain letters only";
+  }
+
+  if (!values.phoneNumber) {
     errors.phoneNumber = "Mobile number is required";
-  } else if (phoneDigits.length < 10 || phoneDigits.length > 15) {
-    errors.phoneNumber = "Enter a valid mobile number";
+  } else if (!/^\d{10}$/.test(values.phoneNumber)) {
+    errors.phoneNumber = "Enter a valid 10-digit mobile number";
   }
 
   if (!values.industryType) errors.industryType = "Select industry type";
@@ -86,7 +108,8 @@ export function useEnquiryForm() {
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) => {
-    const { name, value } = event.target;
+    const { name } = event.target;
+    const value = sanitize(name, event.target.value);
     setValues((current) => ({ ...current, [name]: value }));
     setErrors((current) => {
       if (!current[name as keyof EnquiryValues]) return current;

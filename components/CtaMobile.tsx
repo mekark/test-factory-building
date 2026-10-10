@@ -205,7 +205,7 @@ export default function CtaMobile() {
                   name="phoneNumber"
                   type="tel"
                   inputMode="tel"
-                  maxLength={16}
+                  maxLength={10}
                   aria-label="Mobile number"
                   placeholder="Mobile Number*"
                   value={values.phoneNumber}

@@ -77,14 +77,6 @@ export default function ProjectsGalleryMobile() {
             </div>
           ))}
         </div>
-
-        {/* ---------- View All button ---------- */}
-        <a
-          href="#projects"
-          className="flex w-full items-center justify-center rounded-[8px] bg-[#c4161c] px-6 py-[14px] text-[14px] font-semibold leading-[normal] text-[#f5f5f5] drop-shadow-[0px_8.809px_17.618px_rgba(196,22,28,0.3)] transition-colors hover:bg-[#ad1318]"
-        >
-          View All →
-        </a>
       </div>
     </div>
   );

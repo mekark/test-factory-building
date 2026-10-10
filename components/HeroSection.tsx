@@ -13,7 +13,7 @@ import {
   useEnquiryForm,
 } from "./useEnquiryForm";
 
-// Inter is only used by the hero badge and the feature list (per Figma).
+// Inter is only used by the hero badge (per Figma).
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500"] });
 
 /* ============================================================
@@ -22,12 +22,12 @@ const inter = Inter({ subsets: ["latin"], weight: ["400", "500"] });
 
 // Feature points, in Figma grid order (row by row, two columns).
 const FEATURES = [
-  ["Complete Turnkey Factory Construction –", "From Design to Handover"],
-  ["Factory Construction Delivered in as", "Fast as 150 Days*"],
-  ["Advanced In-House Manufacturing for", "Superior Quality"],
-  ["Industrial EPC Contractor with ISO-Certified", "Standards"],
-  ["Dedicated Project Management for", "On-Time Delivery"],
-  ["Trusted by 500+ Industrial &", "Manufacturing Clients"],
+  "Automotive, EV, Electronics, Electrical & Semiconductor.",
+  "Renewable Energy, Engineering,Electrical Vehicle.",
+  "Cold Storage & Clean Rooms,  Machinery & Heavy Manufacturing.",
+  "Textile, Pharmaceutical, Chemical & Life Sciences.",
+  "Metals, Steel, Building Materials, Packaging & Plastics, Logistics.",
+  "Apparel, Leather, Food Processing, Beverage, FMCG.",
 ] as const;
 
 // Client logos: size is the logo box in px, dx/dy are Figma's sub-pixel nudges.
@@ -119,18 +119,18 @@ export default function HeroSection() {
         />
 
         {/* ---------- Design canvas ----------
-            ≥1920px: exact Figma frame (1920 wide, 135.5px left inset), zoom 1.
+            ≥1920px: exact Figma frame (1920 wide, 80px left inset), zoom 1.
             1280–1919px: same frame, zoomed continuously to fill the viewport.
             <1280px: stacked mobile layout. */}
         <div
           ref={canvasRef}
-          className="canvas-zoom relative mx-auto w-full px-4 pb-16 pt-12 sm:px-6 xl:h-[1013px] xl:w-[1920px] xl:pb-0 xl:pl-[135.5px] xl:pr-0 xl:pt-[78.67px]"
+          className="canvas-zoom relative mx-auto w-full px-4 pb-16 pt-12 sm:px-6 xl:h-[1013px] xl:w-[1920px] xl:pb-0 xl:pl-[80px] xl:pr-0 xl:pt-[86px]"
         >
-          <div className="flex flex-col gap-12 xl:flex-row xl:items-center xl:gap-[180px]">
+          <div className="flex flex-col gap-12 xl:flex-row xl:items-center xl:gap-[50px]">
             {/* ========================================================
                 LEFT COLUMN — copy, features, logos, stats, CTAs
                 ======================================================== */}
-            <div className="flex w-full min-w-0 flex-col items-start gap-[24px] xl:w-[862px] xl:shrink-0">
+            <div className="flex w-full min-w-0 flex-col items-start gap-[24px] xl:w-auto xl:shrink-0">
               {/* ---------- Eyebrow badge ---------- */}
               <p
                 className={`${inter.className} flex items-center gap-[10.667px] rounded-full border-[1.333px] border-white/20 px-[17.333px] py-[9.333px] text-[14px] font-medium leading-[21.333px] text-white sm:text-[16px]`}
@@ -139,51 +139,58 @@ export default function HeroSection() {
                   aria-hidden
                   className="size-[10.667px] shrink-0 rounded-full bg-[#e40015]"
                 />
-                Indias Trusted Factory &amp; EPC Partner
+                Industrial Factory Construction &amp; Expansion Company
               </p>
 
               {/* ---------- Main heading (white line + red highlight bar) ---------- */}
               <h1 className="flex flex-col items-start gap-[12px] font-bold text-white xl:gap-[20px]">
                 <span className="text-[30px] leading-[38px] sm:text-[42px] sm:leading-[50px] xl:whitespace-nowrap xl:text-[54px] xl:leading-[58px]">
-                  Turnkey Factory Construction &amp;
+                  Build Factory. Design to Delivery
                 </span>
-                <span className="relative inline-block bg-[#ed1d23] px-[5px] text-[30px] leading-[42px] sm:text-[42px] sm:leading-[52px] xl:block xl:h-[59px] xl:w-[641px] xl:p-0">
+                <span className="relative inline-block bg-[#ed1d23] px-[5px] text-[30px] leading-[42px] sm:text-[42px] sm:leading-[52px] xl:block xl:h-[59px] xl:w-[695px] xl:p-0">
                   <span className="block whitespace-nowrap xl:absolute xl:left-[5px] xl:top-[24px] xl:-translate-y-1/2 xl:text-[54px] xl:leading-[58px]">
-                    Industrial EPC Solutions
+                    Construction &amp; Expansion
                   </span>
                 </span>
               </h1>
 
-              {/* ---------- Sub-heading ---------- */}
-              <p className="w-full whitespace-pre-wrap text-[17px] font-semibold leading-[24px] text-white sm:text-[20px] sm:leading-[26px] xl:w-[862px] xl:text-[22px] xl:leading-[28px]">
-                {`Factory Construction Company for Manufacturing Plants, Industrial Buildings & Factory Sheds  & Industrial Plant Builders`}
-              </p>
+              {/* ---------- Intro: brand line + coverage line ---------- */}
+              <div className="w-full text-[17px] font-normal leading-[24px] text-[#a9a9a9] sm:text-[20px] sm:leading-[26px] xl:w-auto xl:text-[22px] xl:leading-[28px]">
+                <p>
+                  <span className="font-bold text-[#ed1d23]">MEKARK</span>
+                  {" - Builds Every Structure You Want."}
+                </p>
+                <p className="xl:whitespace-nowrap">
+                  {"All kinds of Industrial, Factory Construction & Expansion projects – "}
+                  <span className="font-bold text-white">ALL INDIA</span>
+                </p>
+              </div>
 
-              {/* ---------- Feature list (2 × 3 grid with red chevrons) ---------- */}
-              <ul className="grid w-full grid-cols-1 gap-y-[14px] md:grid-cols-2 md:gap-x-[24px] md:gap-y-[20px] xl:inline-grid xl:w-auto xl:grid-cols-[repeat(2,fit-content(100%))]">
-                {FEATURES.map((lines) => (
-                  <li
-                    key={lines.join(" ")}
-                    className="flex items-center gap-[8px] self-start justify-self-start"
-                  >
-                    <img
-                      src="/hero/icons/chevron.svg"
-                      alt=""
-                      width={24}
-                      height={24}
-                      className="block size-[24px] shrink-0"
-                    />
-                    <span
-                      className={`${inter.className} text-[15px] font-normal leading-[20px] text-white/70 xl:whitespace-nowrap xl:text-[18px]`}
+              {/* ---------- Capabilities line + feature list (2 × 3 grid with red chevrons) ---------- */}
+              <div className="flex flex-col items-start gap-[16px]">
+                <p className="text-[17px] font-bold leading-[24px] text-[#f3f3f3] sm:text-[20px] sm:leading-[26px] xl:whitespace-nowrap xl:text-[22px] xl:leading-[28px]">
+                  In-House PEB Manufacturing - Civil - PEB – MEP - Turnkey EPC.
+                </p>
+                <ul className="grid w-full grid-cols-1 gap-y-[14px] md:grid-cols-2 md:gap-x-[20px] md:gap-y-[16px] xl:inline-grid xl:w-auto xl:grid-cols-[repeat(2,fit-content(100%))]">
+                  {FEATURES.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-center gap-[8px] self-start justify-self-start"
                     >
-                      {lines[0]}
-                      <br className="hidden xl:block" />
-                      <span className="xl:hidden"> </span>
-                      {lines[1]}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+                      <img
+                        src="/hero/icons/chevron.svg"
+                        alt=""
+                        width={24}
+                        height={24}
+                        className="block size-[24px] shrink-0"
+                      />
+                      <span className="whitespace-pre text-[15px] font-normal leading-[20px] text-[#f7f7f7] xl:text-[18px]">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* ---------- "Trusted Across India" client logo marquee ---------- */}
               <div className="relative h-[147px] w-full overflow-hidden rounded-[18px] xl:w-[847px] xl:shrink-0">
@@ -357,8 +364,8 @@ export default function HeroSection() {
                       name="phoneNumber"
                       type="tel"
                       inputMode="tel"
-                      maxLength={16}
-                      placeholder="+91 98765 43210"
+                      maxLength={10}
+                      placeholder="98765 43210"
                       value={values.phoneNumber}
                       onChange={handleChange}
                       aria-invalid={Boolean(errors.phoneNumber)}
