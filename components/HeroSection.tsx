@@ -30,25 +30,26 @@ const FEATURES = [
   "Apparel, Leather, Food Processing, Beverage, FMCG.",
 ] as const;
 
-// Client logos: size is the logo box in px, dx/dy are Figma's sub-pixel nudges.
+// Client logos (same set and sizing as the PEB site): `scale` zooms logos whose
+// artwork has extra padding inside the file; the rest use the default 34px height.
 const CLIENT_LOGOS = [
-  { name: "VWU", src: "/hero/logos/vwu.webp", w: 42, h: 42, dx: 0, dy: -0.5 },
-  { name: "Voltas", src: "/hero/logos/voltas.webp", w: 75, h: 75, dx: -0.5, dy: 0 },
-  { name: "TVS", src: "/hero/logos/tvs.webp", w: 75, h: 75, dx: 0.5, dy: 0 },
-  { name: "Tata Electronics", src: "/hero/logos/tata.webp", w: 75, h: 75, dx: 0.5, dy: 0 },
-  { name: "Schwing Stetter", src: "/hero/logos/stetter.webp", w: 75, h: 75, dx: 0.5, dy: 0 },
-  { name: "SRF", src: "/hero/logos/srf.webp", w: 75, h: 75, dx: 0.5, dy: 0 },
-  { name: "Saveetha", src: "/hero/logos/saveetha.webp", w: 48, h: 48, dx: 0, dy: 0 },
-  { name: "Sarvam Safety", src: "/hero/logos/sarvam.webp", w: 31, h: 31, dx: 0.5, dy: -0.5 },
-  { name: "Sanmar", src: "/hero/logos/sanmar-1.webp", w: 51, h: 51, dx: 0.5, dy: -0.5 },
-  { name: "Sanmar Group", src: "/hero/logos/sanmar-2.webp", w: 41, h: 40, dx: 0.5, dy: 0 },
-  { name: "Reliance", src: "/hero/logos/reliance.webp", w: 44, h: 44, dx: 0, dy: 0 },
-  { name: "Orbittal", src: "/hero/logos/orbittal.webp", w: 49, h: 49, dx: 0.5, dy: -0.5 },
-  { name: "NS Instruments", src: "/hero/logos/nsi.webp", w: 46, h: 46, dx: 0, dy: 0 },
-  { name: "MRF", src: "/hero/logos/mrf.webp", w: 30, h: 30, dx: 0, dy: 0 },
-  { name: "L&T", src: "/hero/logos/lt.webp", w: 32, h: 32, dx: 0, dy: 0 },
-  { name: "LA Freightlift", src: "/hero/logos/laf.webp", w: 56, h: 56, dx: 0, dy: 0 },
-  { name: "Komatsu", src: "/hero/logos/komatsu.webp", w: 30, h: 30, dx: 0, dy: 0 },
+  { name: "VWU", src: "/hero/clients/vwu.webp", scale: 1 },
+  { name: "Voltas", src: "/hero/clients/voltas.webp", scale: 1.6 },
+  { name: "TVS", src: "/hero/clients/tvs.webp", scale: 1.6 },
+  { name: "Tata Electronics", src: "/hero/clients/tata.webp", scale: 1.6 },
+  { name: "Schwing Stetter", src: "/hero/clients/stetter.webp", scale: 1.6 },
+  { name: "SRF", src: "/hero/clients/srf.webp", scale: 1.6 },
+  { name: "Saveetha", src: "/hero/clients/saveetha.webp", scale: 1.2 },
+  { name: "Sarvam Safety", src: "/hero/clients/sarvam.webp", scale: 1 },
+  { name: "Sanmar", src: "/hero/clients/sanmar-1.webp", scale: 1.2 },
+  { name: "Sanmar Group", src: "/hero/clients/sanmar-2.webp", scale: 1 },
+  { name: "Reliance", src: "/hero/clients/reliance.webp", scale: 1.2 },
+  { name: "Orbittal", src: "/hero/clients/orbittal.webp", scale: 1.2 },
+  { name: "NS Instruments", src: "/hero/clients/nsi.webp", scale: 1 },
+  { name: "MRF", src: "/hero/clients/mrf.webp", scale: 1 },
+  { name: "L&T", src: "/hero/clients/lt.webp", scale: 1 },
+  { name: "LA Freightlift", src: "/hero/clients/laf.webp", scale: 1.2 },
+  { name: "Komatsu", src: "/hero/clients/komatsu.webp", scale: 1 },
 ] as const;
 
 // Stats: value (white) + suffix (red, each with its own Figma colour).
@@ -217,15 +218,11 @@ export default function HeroSection() {
                         <img
                           src={logo.src}
                           alt={index < CLIENT_LOGOS.length ? logo.name : ""}
-                          width={logo.w}
-                          height={logo.h}
+                          width={120}
+                          height={40}
                           loading="lazy"
-                          className="pointer-events-none absolute left-1/2 top-1/2 max-w-none object-cover"
-                          style={{
-                            width: logo.w,
-                            height: logo.h,
-                            transform: `translate(calc(-50% + ${logo.dx}px), calc(-50% + ${logo.dy}px))`,
-                          }}
+                          className="pointer-events-none absolute left-1/2 top-1/2 h-[34px] w-auto max-w-[calc(100%-12px)] -translate-x-1/2 -translate-y-1/2 object-contain"
+                          style={{ height: logo.scale === 1 ? 34 : 40, scale: logo.scale === 1 ? undefined : logo.scale }}
                         />
                       </div>
                     ))}

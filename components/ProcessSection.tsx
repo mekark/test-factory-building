@@ -123,7 +123,7 @@ export default function ProcessSection() {
             <div className="flex flex-col items-start gap-[12px] xl:gap-[16px]">
               <h2 className="text-[40px] font-bold leading-[1.15] text-[#0f172a] sm:text-[54px] xl:whitespace-nowrap xl:text-[66px] xl:leading-[73.333px]">
                 Our <span className="text-[#ed1d23]">Turnkey Factory</span>{" "}
-                Construction
+                Construction Process  
               </h2>
               <p className="text-[16px] font-normal leading-[1.5] text-[#64748b] sm:text-[18px] xl:w-[1083px] xl:text-[24px] xl:leading-[32px]">
                 From the first consultation to final handover, our factory

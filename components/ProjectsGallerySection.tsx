@@ -111,7 +111,7 @@ export default function ProjectsGallerySection() {
               </h2>
             </div>
             <p className="w-full text-[18px] font-medium leading-[28px] text-[#64748b] xl:text-[24px] xl:leading-[36px]">
-              Completed PEB structures across Tamil Nadu and beyond.
+               Our Completed Projects.
             </p>
           </div>
 
