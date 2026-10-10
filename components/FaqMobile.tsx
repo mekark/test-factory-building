@@ -55,9 +55,6 @@ export default function FaqMobile() {
               <br />
               Questions
             </h2>
-
-            {/* Sub-heading: the Figma design only has the placeholder "Text" here */}
-            <p className="text-[14px] font-medium leading-[15px] text-[#64748b]">Text</p>
           </div>
 
           {/* Factory illustration (square, transparent background) */}

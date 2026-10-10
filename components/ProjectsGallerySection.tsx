@@ -7,7 +7,7 @@ import { useCanvasZoom } from "./useCanvasZoom";
 
 /* ============================================================
    GALLERY TILES
-   x/y/w/h place each tile on the 1920×1427 desktop canvas (a 2×2 grid, 25px
+   x/y/w/h place each tile on the 1920×1816 desktop canvas (a 2×3 grid, 25px
    gap). `crop` is Figma's custom image placement inside the tile; `radius`
    rounds only the grid's outer corners. Below 1280px the tiles flow into a
    2-column grid and these values are ignored.
@@ -47,15 +47,31 @@ const TILES: Tile[] = [
     src: "/projects/gallery-3.webp",
     alt: "Industrial warehouse with a brown and glass entrance facade",
     x: 80, y: 761.8, w: 867.5, h: 488.5,
-    radius: "xl:rounded-bl-[32px]",
-    crop: { left: "-0.02%", top: "-3.89%", width: "108.03%", height: "108.02%" },
+    radius: "",
+    crop: { left: "-11.16%", top: "-2.25%", width: "119.17%", height: "119.15%" },
   },
   {
     id: "d",
     src: "/projects/gallery-4.webp",
     alt: "Blue steel warehouse on an industrial estate",
     x: 972.5, y: 761.8, w: 867.5, h: 488.5,
+    radius: "",
+  },
+  {
+    id: "e",
+    src: "/projects/gallery-5.webp",
+    alt: "Large white industrial shed with landscaped surroundings seen from above",
+    x: 80, y: 1275.3, w: 867.5, h: 488.5,
+    radius: "xl:rounded-bl-[32px]",
+    crop: { left: "-3.05%", top: "-16.65%", width: "116.44%", height: "116.64%" },
+  },
+  {
+    id: "f",
+    src: "/projects/gallery-6.webp",
+    alt: "White and blue industrial warehouse with loading docks and a delivery truck",
+    x: 972.5, y: 1275.3, w: 867.5, h: 488.5,
     radius: "xl:rounded-br-[32px]",
+    crop: { left: "-10.82%", top: "-10.66%", width: "110.81%", height: "110.75%" },
   },
 ];
 
@@ -80,7 +96,7 @@ export default function ProjectsGallerySection() {
         {/* ---------- Design canvas (zoomed to the viewport on desktop) ---------- */}
         <div
           ref={canvasRef}
-          className="canvas-zoom relative mx-auto w-full px-5 py-12 sm:px-8 sm:py-16 xl:h-[1427px] xl:w-[1920px] xl:p-0"
+          className="canvas-zoom relative mx-auto w-full px-5 py-12 sm:px-8 sm:py-16 xl:h-[1816px] xl:w-[1920px] xl:p-0"
         >
           {/* ======================================================
               HEADING — eyebrow, two-tone title, sub-heading
@@ -100,7 +116,7 @@ export default function ProjectsGallerySection() {
           </div>
 
           {/* ======================================================
-              PHOTO GRID — four tiles, rounded only on the outer corners
+              PHOTO GRID — six tiles (3 rows × 2), rounded only on the outer corners
               ====================================================== */}
           <div className="relative mt-8 grid grid-cols-2 gap-3 sm:gap-4 xl:mt-0 xl:block">
             {TILES.map((tile) => {

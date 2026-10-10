@@ -1,11 +1,11 @@
 import Image from "next/image";
 
 /* ============================================================
-   MOBILE PROJECTS GALLERY (Figma "Projects gallery", 390 × 1023)
+   MOBILE PROJECTS GALLERY (Figma "Projects gallery", node 9496:10350)
    Shown below 1280px only; the desktop gallery is untouched.
    ============================================================ */
 
-// Four full-width 180px tiles. `crop` is Figma's custom image placement inside
+// Six full-width 180px tiles. `crop` is Figma's custom image placement inside
 // the tile (the photo is stretched to these offsets); tile 4 simply covers.
 const TILES = [
   {
@@ -27,6 +27,16 @@ const TILES = [
     src: "/projects/gallery-4.webp",
     alt: "Blue steel warehouse on an industrial estate",
   },
+  {
+    src: "/projects/mobile/gallery-5.webp",
+    alt: "Aerial view of a white industrial shed with loading bays and landscaped surroundings",
+    crop: { left: "-1.88%", top: "-24.44%", width: "113.58%", height: "124.57%" },
+  },
+  {
+    src: "/projects/mobile/gallery-6.webp",
+    alt: "White and blue industrial warehouse with loading docks and a delivery truck",
+    crop: { left: "-11.44%", top: "-17.22%", width: "111.54%", height: "122.06%" },
+  },
 ] as const;
 
 export default function ProjectsGalleryMobile() {
@@ -46,12 +56,12 @@ export default function ProjectsGalleryMobile() {
               Projects <span className="text-[#ed1d23]">Gallery</span>
             </h2>
           </div>
-          <p className="w-[307px] max-w-full text-[14px] font-medium leading-[20px] text-[#64748b]">
+          <p className="w-[300px] max-w-full text-[14px] font-normal leading-[normal] text-[#64748b]">
             Completed PEB structures across Tamil Nadu and beyond.
           </p>
         </div>
 
-        {/* ---------- Photo stack: four full-width tiles ---------- */}
+        {/* ---------- Photo stack: six full-width tiles ---------- */}
         <div className="flex w-full flex-col gap-4">
           {TILES.map((tile) => (
             <div key={tile.src} className="relative h-[180px] w-full overflow-hidden">

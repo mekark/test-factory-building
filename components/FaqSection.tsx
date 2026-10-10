@@ -51,11 +51,6 @@ export default function FaqSection() {
                 <br />
                 <span className="text-[#cc000a]">questions.</span>
               </h2>
-
-              {/* Sub-heading: the Figma design only has the placeholder "Text" here */}
-              <p className="whitespace-nowrap text-[18px] font-medium leading-[28px] text-[#64748b] xl:text-[24px] xl:leading-[37.333px]">
-                Text
-              </p>
             </div>
 
             {/* Factory illustration (square, transparent background) */}
