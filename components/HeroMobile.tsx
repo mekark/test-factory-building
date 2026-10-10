@@ -33,10 +33,10 @@ const FEATURES = [
 // The four client logos and their crops from the mobile Figma node.
 // size = logo box inside the 64×40 tile, as in Figma.
 const LOGOS = [
-  { name: "L&T", src: "/hero/mobile/design-lt.png", w: 64, h: 64 * 1132 / 2084 },
-  { name: "CAT", src: "/hero/mobile/design-cat.png", w: 48, h: 48 },
-  { name: "TVS", src: "/hero/mobile/design-tvs.png", w: 52, h: 53 },
-  { name: "Tata", src: "/hero/mobile/design-tata.png", w: 32, h: 32 },
+  { name: "L&T", src: "/hero/mobile/design-lt.webp", w: 64, h: 64 * 1132 / 2084 },
+  { name: "CAT", src: "/hero/mobile/design-cat.webp", w: 48, h: 48 },
+  { name: "TVS", src: "/hero/mobile/design-tvs.webp", w: 52, h: 53 },
+  { name: "Tata", src: "/hero/mobile/design-tata.webp", w: 32, h: 32 },
 ] as const;
 
 // Suffix colours differ slightly per stat in the design.
@@ -72,7 +72,7 @@ export default function HeroMobile() {
     /* ==========================================================
        MOBILE FRAME — one 390px column, page background shows beside it on tablets
        ========================================================== */
-    <div className="mobile-col relative min-h-[1732px] overflow-hidden bg-[#060606] pt-[44px] font-sans xl:hidden">
+    <div className="mobile-col relative min-h-[1704px] overflow-hidden bg-[#060606] pt-4 font-sans xl:hidden">
       {/* ======================================================
           BACKGROUND STACK (bottom → top), positioned as in Figma.
           Left offsets/widths are % of the frame so it scales with the column;
@@ -81,36 +81,40 @@ export default function HeroMobile() {
       <div aria-hidden className="pointer-events-none absolute inset-0">
         {/* 1. Warehouse at sunset (only a sliver shows at the very top) */}
         <Image
-          src="/hero/mobile/design-layer1.png"
+          src="/hero/mobile/design-layer1.webp"
           alt=""
           width={941}
           height={1672}
+          sizes="400px"
           className="absolute left-[-0.82%] top-[-76.25px] h-[698.67px] w-[100.82%] max-w-none"
         />
         {/* 2. Steel frame at dusk, tall photo */}
         <Image
-          src="/hero/mobile/design-image22.png"
+          src="/hero/mobile/design-image22.webp"
           alt=""
           width={941}
           height={1672}
+          sizes="950px"
           className="absolute left-[-70.46%] top-[15.44px] h-[1671.95px] w-[241.28%] max-w-none"
         />
         {/* 3. Steel frame, second crop behind the form */}
         <Image
-          src="/hero/mobile/design-image23.png"
+          src="/hero/mobile/design-image23.webp"
           alt=""
           width={714}
           height={2202}
+          sizes="510px"
           className="absolute left-[-15.13%] top-[419px] h-[1556px] w-[129.49%] max-w-none object-cover"
         />
         {/* 4. 40% black wash from below the hero image */}
         <div className="absolute inset-x-0 top-[284px] h-[1691px] bg-[rgba(15,15,15,0.4)]" />
         {/* 5. Dark vignette image + radial shade */}
         <Image
-          src="/hero/mobile/design-overlay-a.png"
+          src="/hero/mobile/design-overlay-a.webp"
           alt=""
           width={941}
           height={1672}
+          sizes="1110px"
           className="absolute left-[-91.23%] top-[-8.54px] h-[1962px] w-[282.86%] max-w-none"
         />
         <img
@@ -136,7 +140,7 @@ export default function HeroMobile() {
             {/* Hero photo (full width) with the two-line headline over its lower half */}
             <div className="relative h-[219px] overflow-hidden bg-[#060606]">
               <Image
-                src="/hero/mobile/design-banner.png"
+                src="/hero/mobile/design-banner.webp"
                 alt=""
                 width={1672}
                 height={941}
