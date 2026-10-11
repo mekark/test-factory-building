@@ -44,7 +44,7 @@ const STEPS: Step[] = [
   },
   {
     number: "03",
-    title: "Civil Works & Foundations",
+    title: "Civil Works & PEB",
     description:
       "Disciplined sequencing of civil works, steel framing and infrastructure.",
     icon: "/process/mobile/hard-hat.svg",

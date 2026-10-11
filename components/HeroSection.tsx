@@ -41,13 +41,12 @@ const CLIENT_LOGOS = [
   { name: "SRF", src: "/hero/clients/srf.webp", scale: 1.6 },
   { name: "Saveetha", src: "/hero/clients/saveetha.webp", scale: 1.2 },
   { name: "Sarvam Safety", src: "/hero/clients/sarvam.webp", scale: 1 },
-  { name: "Sanmar", src: "/hero/clients/sanmar-1.webp", scale: 1.2 },
-  { name: "Sanmar Group", src: "/hero/clients/sanmar-2.webp", scale: 1 },
   { name: "Reliance", src: "/hero/clients/reliance.webp", scale: 1.2 },
   { name: "Orbittal", src: "/hero/clients/orbittal.webp", scale: 1.2 },
   { name: "NS Instruments", src: "/hero/clients/nsi.webp", scale: 1 },
   { name: "MRF", src: "/hero/clients/mrf.webp", scale: 1 },
   { name: "L&T", src: "/hero/clients/lt.webp", scale: 1 },
+  { name: "Caterpillar", src: "/hero/clients/cat.webp", scale: 1.2 },
   { name: "LA Freightlift", src: "/hero/clients/laf.webp", scale: 1.2 },
   { name: "Komatsu", src: "/hero/clients/komatsu.webp", scale: 1 },
 ] as const;
@@ -220,7 +219,6 @@ export default function HeroSection() {
                           alt={index < CLIENT_LOGOS.length ? logo.name : ""}
                           width={120}
                           height={40}
-                          loading="lazy"
                           className="pointer-events-none absolute left-1/2 top-1/2 h-[34px] w-auto max-w-[calc(100%-12px)] -translate-x-1/2 -translate-y-1/2 object-contain"
                           style={{ height: logo.scale === 1 ? 34 : 40, scale: logo.scale === 1 ? undefined : logo.scale }}
                         />

@@ -40,7 +40,7 @@ body {
 }
 
 /* Hero client logo strip: the track holds two identical sets, so shifting by
-   half its width (17 tiles × 140px) loops seamlessly. */
+   half its width (the logo tiles × 140px) loops seamlessly. */
 @keyframes hero-logo-marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
